@@ -152,7 +152,7 @@
     position: absolute; inset: 0; z-index: 0;
     width: 100%; height: 100%;
     object-fit: cover; object-position: center;
-    opacity: 0.18;
+    opacity: 0.65;
     filter: grayscale(60%) contrast(1.1);
   }
   .hero-bg-img {
@@ -166,6 +166,7 @@
   /* iOS/mobile doesn't support background-attachment: fixed */
   @media (max-width: 900px), (hover: none) {
     .hero-bg-img { background-attachment: scroll; }
+  }
   }
   .hero-bg-grad {
     position: absolute; inset: 0;
@@ -281,7 +282,7 @@
   /* ─── HERO PARTICLES ────────────────────────────────────────── */
   #heroCanvas {
     position: absolute; inset: 0; z-index: 1;
-    pointer-events: none; opacity: 0.55;
+    pointer-events: none; opacity: 0.9;
   }
 
   /* ─── PRESS SECTION ──────────────────────────────────────────── */
@@ -1279,7 +1280,7 @@
       </div>
 
       <div class="video-card reveal reveal-delay-1" data-vid="bax0vT5l2IM">
-        <img class="video-thumb" src="https://img.youtube.com/vi/bax0vT5l2IM/hqdefault.jpg" alt="Me, My Gas, &amp; I" loading="lazy">
+        <img class="video-thumb" src="https://img.youtube.com/vi/bax0vT5l2IM/hqdefault.jpg" alt="Me, My Gas, & I" loading="lazy">
         <div class="video-overlay">
           <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="video-title">Me, My Gas, &amp; I</div>
@@ -1761,7 +1762,7 @@
         y: canvas.height + 10,
         r: Math.random() * 1.8 + 0.4,
         speed: Math.random() * 0.6 + 0.2,
-        opacity: Math.random() * 0.6 + 0.2,
+        opacity: Math.random() * 0.5 + 0.5,
         drift: (Math.random() - 0.5) * 0.3
       };
     }
