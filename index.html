@@ -479,6 +479,7 @@
   .contact-inner p {
     font-size: 1rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 40px;
   }
+  /* ⬇ BOOKING EMAIL — update this value when you have the address */
   .contact-email {
     display: inline-block;
     font-family: 'Bebas Neue', sans-serif;
@@ -610,7 +611,7 @@
   <a href="#contact" class="mobile-link" style="color:var(--gold)">Book</a>
 </div>
 
-<!-- ═══ HERO ══════════════════════════════════════════════════ -->
+<!-- ═══ HERO ══════════════════════════════════════════════════════ -->
 <section id="hero">
   <div class="hero-bg">
     <div class="hero-bg-img"></div>
@@ -635,19 +636,20 @@
 
 <div class="gold-rule"></div>
 
-<!-- ═══ SSAB BAR ══════════════════════════════════════════════════ -->
+<!-- ═══ SSAB BAR ═════════════════════════════════════════════════ -->
 <div class="ssab-bar reveal">
   <img src="assets/ssab-logo.png" alt="$$AB — Some Stars Are Built Born" class="ssab-logo">
 </div>
 
 <div class="gold-rule"></div>
 
-<!-- ═══ ABOUT ══════════════════════════════════════════════════ -->
+<!-- ═══ ABOUT ════════════════════════════════════════════════════ -->
 <section id="about">
   <div class="container">
     <div class="about-grid">
       <div class="about-photo-wrap reveal">
         <img src="assets/press-photo.jpg" alt="$tarborn press photo" class="about-photo" id="aboutPhoto">
+        <!-- Fallback placeholder shown if image fails to load -->
         <div class="about-photo-placeholder" id="photoPlaceholder" style="display:none">
           <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1">
             <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
@@ -705,7 +707,7 @@
 
 <div class="gold-rule"></div>
 
-<!-- ═══ MUSIC ══════════════════════════════════════════════════ -->
+<!-- ═══ MUSIC ════════════════════════════════════════════════════ -->
 <section id="music">
   <div class="container">
     <div class="reveal">
@@ -942,7 +944,7 @@
 
 <div class="gold-rule"></div>
 
-<!-- ═══ MUSIC VIDEOS ══════════════════════════════════════════════════ -->
+<!-- ═══ MUSIC VIDEOS ══════════════════════════════════════════════ -->
 <section id="videos">
   <div class="container">
     <div class="reveal">
@@ -962,7 +964,7 @@
       </div>
 
       <div class="video-card reveal reveal-delay-1" data-vid="bax0vT5l2IM">
-        <img class="video-thumb" src="https://img.youtube.com/vi/bax0vT5l2IM/hqdefault.jpg" alt="Me, My Gas, &amp; I" loading="lazy">
+        <img class="video-thumb" src="https://img.youtube.com/vi/bax0vT5l2IM/hqdefault.jpg" alt="Me, My Gas, & I" loading="lazy">
         <div class="video-overlay">
           <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="video-title">Me, My Gas, &amp; I</div>
@@ -1003,7 +1005,7 @@
 
 <div class="gold-rule"></div>
 
-<!-- ═══ BATTLE RAP ══════════════════════════════════════════════════ -->
+<!-- ═══ BATTLE RAP ════════════════════════════════════════════════ -->
 <section id="battles">
   <div class="container">
     <div class="reveal">
@@ -1104,7 +1106,7 @@
 
 <div class="gold-rule"></div>
 
-<!-- ═══ FREESTYLES ══════════════════════════════════════════════════ -->
+<!-- ═══ FREESTYLES ════════════════════════════════════════════════ -->
 <section id="freestyles">
   <div class="container">
     <div class="reveal">
@@ -1147,7 +1149,7 @@
 
 <div class="gold-rule"></div>
 
-<!-- ═══ CONTACT ══════════════════════════════════════════════════ -->
+<!-- ═══ CONTACT ═══════════════════════════════════════════════════ -->
 <section id="contact">
   <div class="contact-inner">
     <div class="reveal">
@@ -1159,15 +1161,15 @@
         reach out directly. $tarborn is available for shows, features, interviews, and collaborations worldwide.
       </p>
 
-      <!-- ╔══════════════════════════════════════════════════════════╗
-           ║  BOOKING EMAIL — replace the placeholder below          ║
-           ║  Search for: BOOKING_EMAIL_PLACEHOLDER                  ║
-           ╚══════════════════════════════════════════════════════════╝ -->
-      <a href="mailto:BOOKING_EMAIL_PLACEHOLDER@gmail.com" class="contact-email">
-        BOOKING_EMAIL_PLACEHOLDER@gmail.com
+      <a href="mailto:shawnxaviar@gmail.com" class="contact-email">
+        shawnxaviar@gmail.com
       </a>
 
       <div class="socials-row">
+        <a class="social-link" href="https://instagram.com/shawnxaviar" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          @shawnxaviar
+        </a>
         <a class="social-link" href="https://instagram.com/starbeezly__" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
           @starbeezly__
@@ -1185,11 +1187,14 @@
   </div>
 </section>
 
-<!-- ═══ FOOTER ══════════════════════════════════════════════════ -->
+<!-- ═══ FOOTER ════════════════════════════════════════════════════ -->
 <footer>
   <div class="footer-logo">$TARBORN</div>
   <p>© 2025 $tarborn · $$AB · Dot Mobb · Queens, NYC · All Rights Reserved</p>
   <p style="margin-top:8px; font-size:0.65rem; color:#444">Some Stars Are Built Born™</p>
+  <p style="margin-top:16px; font-size:0.68rem; color:#555; letter-spacing:0.06em">
+    Site designed by <a href="https://instagram.com/digitalrushstudios" target="_blank" rel="noopener" style="color:var(--gold); border-bottom:1px solid rgba(201,168,76,0.3); padding-bottom:1px; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Digital Rush Studios</a> · <a href="https://instagram.com/digitalrushstudios" target="_blank" rel="noopener" style="color:#666;">@digitalrushstudios</a>
+  </p>
 </footer>
 
 <script>
@@ -1208,7 +1213,7 @@
     requestAnimationFrame(animGlow);
   })();
 
-  /* ── Nav scroll state ──────────────────────────────────────────── */
+  /* ── Nav scroll state ──────────────────────────────────────── */
   const nav = document.getElementById('mainNav');
   const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
   const sections = document.querySelectorAll('section[id]');
@@ -1225,7 +1230,7 @@
     });
   }, { passive: true });
 
-  /* ── Hamburger ───────────────────────────────────────────── */
+  /* ── Hamburger ─────────────────────────────────────────────── */
   const ham = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
   ham.addEventListener('click', () => {
@@ -1241,14 +1246,14 @@
     });
   });
 
-  /* ── Reveal on scroll ──────────────────────────────────────────── */
+  /* ── Reveal on scroll ──────────────────────────────────────── */
   const revealEls = document.querySelectorAll('.reveal');
   const revealObs = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
   }, { threshold: 0.12 });
   revealEls.forEach(el => revealObs.observe(el));
 
-  /* ── Lightbox ─────────────────────────────────────────────── */
+  /* ── Lightbox ──────────────────────────────────────────────── */
   const lightbox = document.getElementById('lightbox');
   const lbFrame = document.getElementById('lightboxFrame');
   const lbClose = document.getElementById('lightboxClose');
@@ -1271,7 +1276,7 @@
     card.addEventListener('click', () => openLightbox(card.dataset.vid));
   });
 
-  /* ── Music filter tabs ──────────────────────────────────────────── */
+  /* ── Music filter tabs ─────────────────────────────────────── */
   const musicTabs = document.querySelectorAll('[data-filter]');
   const musicCards = document.querySelectorAll('#musicGrid .music-card');
   musicTabs.forEach(btn => {
@@ -1286,7 +1291,7 @@
     });
   });
 
-  /* ── Battle filter tabs ──────────────────────────────────────────── */
+  /* ── Battle filter tabs ────────────────────────────────────── */
   const battleTabs = document.querySelectorAll('[data-bfilter]');
   const battleCards = document.querySelectorAll('#battleGrid .video-card');
   battleTabs.forEach(btn => {
@@ -1301,7 +1306,7 @@
     });
   });
 
-  /* ── Press photo fallback ─────────────────────────────────────────── */
+  /* ── Press photo fallback ──────────────────────────────────── */
   const aboutPhoto = document.getElementById('aboutPhoto');
   const photoPlaceholder = document.getElementById('photoPlaceholder');
   if (aboutPhoto) {
@@ -1311,7 +1316,7 @@
     });
   }
 
-  /* ── Hero logo fallback (show text if logo missing) ───────────────── */
+  /* ── Hero logo fallback (show text if logo missing) ────────── */
   const heroLogo = document.getElementById('heroLogo');
   if (heroLogo) {
     heroLogo.addEventListener('error', () => {
