@@ -167,6 +167,7 @@
   @media (max-width: 900px), (hover: none) {
     .hero-bg-img { background-attachment: scroll; }
   }
+  }
   .hero-bg-grad {
     position: absolute; inset: 0;
     background: linear-gradient(to bottom,
@@ -283,6 +284,104 @@
     position: absolute; inset: 0; z-index: 1;
     width: 100%; height: 100%;
     pointer-events: none; opacity: 0.9;
+  }
+
+  /* ─── BRICK BABY MERCH ───────────────────────────────────────── */
+  #merch {
+    background: #0a0a0a;
+    position: relative; overflow: hidden;
+  }
+  #merch::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .bb-header {
+    text-align: center; margin-bottom: 56px;
+  }
+  .bb-logo-wrap {
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-bottom: 28px;
+  }
+  .bb-logo {
+    width: min(280px, 60vw); filter: invert(0);
+  }
+  .bb-story {
+    max-width: 640px; margin: 0 auto;
+    font-size: 1.05rem; color: #aaa; line-height: 1.8; text-align: center;
+  }
+  .bb-story strong { color: var(--gold); font-weight: 600; }
+  .bb-story em { color: var(--white); font-style: normal; }
+  .bb-divider {
+    width: 60px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 28px auto;
+  }
+  /* Product grid */
+  .bb-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 48px;
+  }
+  .bb-card {
+    position: relative; border-radius: 3px; overflow: hidden;
+    background: var(--grey);
+    border: 1px solid rgba(201,168,76,0.1);
+    transition: border-color 0.3s, transform 0.35s var(--ease), box-shadow 0.35s;
+    cursor: pointer;
+  }
+  .bb-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(201,168,76,0.1);
+  }
+  .bb-card-img {
+    width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block;
+    transition: transform 0.45s var(--ease), filter 0.3s;
+    filter: grayscale(15%) contrast(1.05);
+  }
+  .bb-card:hover .bb-card-img { transform: scale(1.05); filter: grayscale(0%) contrast(1.1); }
+  .bb-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(7,7,7,0.9) 0%, rgba(7,7,7,0.1) 50%, transparent 100%);
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;
+  }
+  .bb-card-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem; letter-spacing: 0.08em; color: var(--white);
+    margin-bottom: 4px;
+  }
+  .bb-card-sub {
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  /* Wide feature card spans 2 cols */
+  .bb-card-wide {
+    grid-column: span 2;
+  }
+  .bb-card-wide .bb-card-img { aspect-ratio: 16/9; }
+  .bb-cta-row {
+    text-align: center; margin-top: 40px;
+  }
+  .bb-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--gold); color: var(--black);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 0.9rem; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 16px 36px; border-radius: 2px; text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .bb-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+  @media (max-width: 700px) {
+    .bb-grid { grid-template-columns: 1fr 1fr; }
+    .bb-card-wide { grid-column: span 2; }
+    .bb-card-wide .bb-card-img { aspect-ratio: 4/3; }
+  }
+  @media (max-width: 480px) {
+    .bb-grid { grid-template-columns: 1fr; }
+    .bb-card-wide { grid-column: span 1; }
   }
 
   /* ─── PRESS SECTION ──────────────────────────────────────────── */
@@ -828,6 +927,7 @@
     <li><a href="#videos">Videos</a></li>
     <li><a href="#battles">Battles</a></li>
     <li><a href="#freestyles">Freestyles</a></li>
+    <li><a href="#merch">Merch</a></li>
     <li><a href="#press">Press</a></li>
     <li><a href="#contact" class="nav-cta">Book</a></li>
   </ul>
@@ -843,6 +943,7 @@
   <a href="#videos" class="mobile-link">Videos</a>
   <a href="#battles" class="mobile-link">Battles</a>
   <a href="#freestyles" class="mobile-link">Freestyles</a>
+  <a href="#merch" class="mobile-link">Merch</a>
   <a href="#press" class="mobile-link">Press</a>
   <a href="#contact" class="mobile-link" style="color:var(--gold)">Book</a>
 </div>
@@ -861,7 +962,7 @@
   <div class="hero-content">
     <p class="hero-eyebrow">Queens, NYC &nbsp;·&nbsp; Dot Mobb &nbsp;·&nbsp; Official EPK</p>
     <img src="assets/starborn-logo.png" alt="$TARBORN" class="hero-logo" id="heroLogo">
-    <p class="hero-tagline">Some Stars Are Built. Some Stars Are Born.</p>
+    <p class="hero-tagline">$ome $tars Are Built, $ome $tars Are Born.™</p>
     <p class="hero-sub">Recording Artist &nbsp;·&nbsp; Battle Rapper &nbsp;·&nbsp; Producer &amp; Engineer</p>
     <div class="hero-ctas">
       <a href="#music" class="btn-primary">Stream Music</a>
@@ -881,8 +982,8 @@
     <span class="ticker-item">QUEENS NYC<span class="ticker-dot"></span></span>
     <span class="ticker-item">DOT MOBB<span class="ticker-dot"></span></span>
     <span class="ticker-item">$$AB<span class="ticker-dot"></span></span>
-    <span class="ticker-item">SOME STARS ARE BUILT<span class="ticker-dot"></span></span>
-    <span class="ticker-item">SOME STARS ARE BORN<span class="ticker-dot"></span></span>
+    <span class="ticker-item">$OME $TARS ARE BUILT<span class="ticker-dot"></span></span>
+    <span class="ticker-item">$OME $TARS ARE BORN<span class="ticker-dot"></span></span>
     <span class="ticker-item">BATTLE RAP<span class="ticker-dot"></span></span>
     <span class="ticker-item">RECORDING ARTIST<span class="ticker-dot"></span></span>
     <span class="ticker-item">PRODUCER &amp; ENGINEER<span class="ticker-dot"></span></span>
@@ -892,8 +993,8 @@
     <span class="ticker-item">QUEENS NYC<span class="ticker-dot"></span></span>
     <span class="ticker-item">DOT MOBB<span class="ticker-dot"></span></span>
     <span class="ticker-item">$$AB<span class="ticker-dot"></span></span>
-    <span class="ticker-item">SOME STARS ARE BUILT<span class="ticker-dot"></span></span>
-    <span class="ticker-item">SOME STARS ARE BORN<span class="ticker-dot"></span></span>
+    <span class="ticker-item">$OME $TARS ARE BUILT<span class="ticker-dot"></span></span>
+    <span class="ticker-item">$OME $TARS ARE BORN<span class="ticker-dot"></span></span>
     <span class="ticker-item">BATTLE RAP<span class="ticker-dot"></span></span>
     <span class="ticker-item">RECORDING ARTIST<span class="ticker-dot"></span></span>
     <span class="ticker-item">PRODUCER &amp; ENGINEER<span class="ticker-dot"></span></span>
@@ -915,13 +1016,13 @@
   <div class="container">
     <div class="about-grid">
       <div class="about-photo-wrap reveal">
-        <img src="assets/press-photo.jpg" alt="$tarborn press photo" class="about-photo" id="aboutPhoto">
+        <img src="assets/press-photo2.jpg" alt="$tarborn press photo" class="about-photo" id="aboutPhoto">
         <!-- Fallback placeholder shown if image fails to load -->
         <div class="about-photo-placeholder" id="photoPlaceholder" style="display:none">
           <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1">
             <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
           </svg>
-          <span>press-photo.jpg</span>
+          <span>press-photo2.jpg</span>
         </div>
       </div>
       <div class="about-text reveal reveal-delay-2">
@@ -929,14 +1030,11 @@
           <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="currentColor"/></svg>
           Artist Bio
         </span>
-        <div class="section-label">Queens, NYC</div>
+        <div class="section-label">Queens, NY &amp; Long Island, NY</div>
         <h2 class="section-title">Built Different.<br>Born Ready.</h2>
         <div class="section-divider"></div>
         <p>
-          Out of <strong>South Jamaica, Queens</strong> — one of the most unforgiving proving grounds in hip-hop —
-          emerged <em>$tarborn</em>. A name that carries its own thesis: some stars are manufactured, some are lucky.
-          $tarborn is the rare thing in between — a artist who <strong>built</strong> himself from the ground up and was
-          <strong>born</strong> with an undeniable gift for the craft.
+          Out of <strong>South Jamaica, Queens</strong> and <strong>Long Island, New York</strong> — two of hip-hop's most unforgiving proving grounds — emerged <em>$tarborn</em>. A name that carries its own thesis: some stars are manufactured, some are lucky. $tarborn is the rare thing in between — an artist who <strong>built</strong> himself from the ground up and was <strong>born</strong> with an undeniable gift for the craft.
         </p>
         <p>
           A proud member of <em>Dot Mobb</em>, $tarborn has carved a lane where the streets meet the studio.
@@ -947,7 +1045,7 @@
         <p>
           His catalog spans raw EPs crafted entirely in-house, collaborative projects with the Mobb,
           and documentary and podcast theme songs that show the reach of his pen. The brand is <em>$$AB</em> —
-          <strong>Some Stars Are Built Born</strong> — and every release is another bar of proof.
+          <strong>$ome $tars Are Built, $ome $tars Are Born™</strong> — and every release is another bar of proof.
         </p>
         <div class="stats-row">
           <div class="stat">
@@ -1469,6 +1567,86 @@
 
 <div class="gold-rule"></div>
 
+<!-- ═══ BRICK BABY MERCH ══════════════════════════════════════════ -->
+<section id="merch">
+  <div class="container">
+
+    <div class="bb-header reveal">
+      <div class="section-label">Official Merchandise</div>
+      <div class="bb-logo-wrap">
+        <img src="assets/bb-logo-white.png" alt="Brick Baby" class="bb-logo">
+      </div>
+      <div class="bb-divider"></div>
+      <p class="bb-story">
+        <strong>The bricks represent the projects</strong> — coming from nothing, building everything.
+        <em>Brick Baby</em> was born out of the same mentality that forged $tarborn: the understanding that where you start
+        doesn't determine where you finish. Every piece carries the weight of the struggle and the pride of the rise.
+        We represent those who <strong>built themselves from the bottom up</strong>, made a way when there wasn't one,
+        and became successful while <em>never forgetting where they came from</em>.
+        Wear the bricks. Wear the story.
+      </p>
+    </div>
+
+    <div class="bb-grid">
+
+      <!-- Lifestyle hero shot — wide -->
+      <div class="bb-card bb-card-wide reveal">
+        <img class="bb-card-img" src="assets/shine-pic.jpg" alt="Brick Baby lifestyle" loading="lazy">
+        <div class="bb-card-overlay">
+          <div class="bb-card-label">Brick Baby</div>
+          <div class="bb-card-sub">The Collection</div>
+        </div>
+      </div>
+
+      <!-- Stool shot -->
+      <div class="bb-card reveal">
+        <img class="bb-card-img" src="assets/stool-pic.png" alt="Brick Baby stool shot" loading="lazy">
+        <div class="bb-card-overlay">
+          <div class="bb-card-label">The Look</div>
+          <div class="bb-card-sub">Brick Baby Apparel</div>
+        </div>
+      </div>
+
+      <!-- Chair shot -->
+      <div class="bb-card reveal reveal-delay-1">
+        <img class="bb-card-img" src="assets/chair-pic.png" alt="Brick Baby chair shot" loading="lazy">
+        <div class="bb-card-overlay">
+          <div class="bb-card-label">Statement Pieces</div>
+          <div class="bb-card-sub">Brick Baby Apparel</div>
+        </div>
+      </div>
+
+      <!-- Belaire -->
+      <div class="bb-card reveal reveal-delay-2">
+        <img class="bb-card-img" src="assets/belaire-pic.png" alt="Brick Baby x Belaire" loading="lazy">
+        <div class="bb-card-overlay">
+          <div class="bb-card-label">Bricks &amp; Bubbles</div>
+          <div class="bb-card-sub">Brick Baby Lifestyle</div>
+        </div>
+      </div>
+
+      <!-- Hats — wide -->
+      <div class="bb-card bb-card-wide reveal reveal-delay-1">
+        <img class="bb-card-img" src="assets/bb-hats.jpg" alt="Brick Baby hats" loading="lazy">
+        <div class="bb-card-overlay">
+          <div class="bb-card-label">Headwear</div>
+          <div class="bb-card-sub">Brick Baby Hats — Available Now</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="bb-cta-row reveal">
+      <a href="mailto:Starborn.music1@gmail.com?subject=Brick Baby Order" class="bb-cta">
+        Shop Brick Baby &nbsp;→
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
 <!-- ═══ PRESS ════════════════════════════════════════════════════ -->
 <section id="press">
   <div class="container">
@@ -1481,8 +1659,8 @@
       <div class="press-block reveal">
         <div class="press-block-title">Artist Bio &amp; Info</div>
         <p>
-          $tarborn is a Queens, NYC recording artist, battle rapper, producer, and engineer.
-          Member of Dot Mobb. Brand: $$AB — Some Stars Are Built Born™.
+          $tarborn is a Queens, NY &amp; Long Island, NY recording artist, battle rapper, producer, and engineer.
+          Member of Dot Mobb. Brand: $$AB — $ome $tars Are Built, $ome $tars Are Born™.
           Full creative control across all releases. Available for interviews, features, and press coverage.
         </p>
         <p style="font-size:0.82rem; color:#666; margin-bottom:0">
@@ -1560,7 +1738,7 @@
 <footer>
   <div class="footer-logo">$TARBORN</div>
   <p>© 2025 $tarborn · $$AB · Dot Mobb · Queens, NYC · All Rights Reserved</p>
-  <p style="margin-top:8px; font-size:0.65rem; color:#444">Some Stars Are Built Born™</p>
+  <p style="margin-top:8px; font-size:0.65rem; color:#444">$ome $tars Are Built, $ome $tars Are Born™</p>
   <p style="margin-top:16px; font-size:0.68rem; color:#555; letter-spacing:0.06em">
     Site designed by <a href="https://instagram.com/digitalrushstudios" target="_blank" rel="noopener" style="color:var(--gold); border-bottom:1px solid rgba(201,168,76,0.3); padding-bottom:1px; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Digital Rush Studios</a> · <a href="https://instagram.com/digitalrushstudios" target="_blank" rel="noopener" style="color:#666;">@digitalrushstudios</a>
   </p>
