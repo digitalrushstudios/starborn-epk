@@ -148,6 +148,13 @@
     position: absolute; inset: 0; z-index: 0;
     background: var(--black);
   }
+  .hero-bg-video {
+    position: absolute; inset: 0; z-index: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    opacity: 0.18;
+    filter: grayscale(60%) contrast(1.1);
+  }
   .hero-bg-img {
     position: absolute; inset: 0;
     background-image: url('assets/press-photo.jpg');
@@ -835,6 +842,9 @@
 <section id="hero">
   <canvas id="heroCanvas"></canvas>
   <div class="hero-bg">
+    <video class="hero-bg-video" autoplay muted loop playsinline preload="none"
+      src="https://d8j0ntlcm91z4.cloudfront.net/user_34xBnMnFhMT2LGRW0dPNuw3bQQ9/hf_20260605_153326_69632ba8-c374-44d5-bb34-fc58014a9ae4.mp4">
+    </video>
     <div class="hero-bg-img"></div>
     <div class="hero-bg-grad"></div>
   </div>
