@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>$TARBORN — Official EPK</title>
+<meta name="description" content="$tarborn — Queens NYC rapper, battle rap legend, Dot Mobb member. Official Electronic Press Kit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ─── RESET & BASE ─────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #070707;
+    --gold: #C9A84C;
+    --gold-light: #e8c96a;
+    --gold-dim: rgba(201,168,76,0.15);
+    --white: #f5f5f5;
+    --grey: #1a1a1a;
+    --grey-mid: #2a2a2a;
+    --grey-light: #444;
+    --text-dim: #888;
+    --nav-h: 70px;
+    --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4, h5 { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.04em; }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  ::selection { background: var(--gold); color: var(--black); }
+
+  /* ─── SCROLLBAR ─────────────────────────────────────────────── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+  /* ─── NOISE TEXTURE OVERLAY ──────────────────────────────────── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 9999;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    opacity: 0.4;
+  }
+
+  /* ─── NAV ────────────────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    height: var(--nav-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px;
+    transition: background 0.4s var(--ease), backdrop-filter 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(7,7,7,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    transition: opacity 0.2s;
+  }
+  .nav-logo:hover { opacity: 0.75; }
+  .nav-links {
+    display: flex; gap: 32px; list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -4px; left: 0; right: 0; height: 1px;
+    background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s var(--ease);
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--white); }
+  .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--black) !important;
+    padding: 8px 20px;
+    font-weight: 700 !important;
+    letter-spacing: 0.1em !important;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.2s !important;
+  }
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: var(--gold-light) !important; transform: translateY(-1px); }
+
+  /* Hamburger */
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    padding: 8px; background: none; border: none; z-index: 1001;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px; background: var(--white);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(7,7,7,0.98);
+    flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem; letter-spacing: 0.06em;
+    color: var(--white); transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--gold); }
+
+  /* ─── HERO ───────────────────────────────────────────────────── */
+  #hero {
+    position: relative; min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 120px 24px 80px;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: var(--black);
+  }
+  .hero-bg-img {
+    position: absolute; inset: 0;
+    background-image: url('assets/press-photo.jpg');
+    background-size: cover; background-position: center top;
+    opacity: 0.25;
+    filter: grayscale(60%) contrast(1.2);
+  }
+  .hero-bg-grad {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(7,7,7,0.3) 0%, rgba(7,7,7,0) 40%, rgba(7,7,7,0.85) 80%, var(--black) 100%);
+  }
+  /* Animated gold lines */
+  .hero-lines {
+    position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none;
+  }
+  .hero-lines::before, .hero-lines::after {
+    content: '';
+    position: absolute; top: 0; width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    animation: scanline 6s ease-in-out infinite;
+  }
+  .hero-lines::before { left: 15%; animation-delay: 0s; }
+  .hero-lines::after { right: 15%; animation-delay: 3s; }
+  @keyframes scanline {
+    0%, 100% { opacity: 0; transform: scaleY(0); }
+    20% { opacity: 0.3; transform: scaleY(1); }
+    80% { opacity: 0.15; transform: scaleY(1); }
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: 0.75rem;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+    opacity: 0; animation: fadeUp 0.8s var(--ease) 0.3s forwards;
+  }
+  .hero-logo {
+    width: min(500px, 80vw); margin: 0 auto 24px;
+    filter: invert(1) brightness(2);
+    opacity: 0; animation: fadeUp 1s var(--ease) 0.5s forwards;
+  }
+  .hero-tagline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    letter-spacing: 0.2em; color: var(--gold);
+    margin-bottom: 12px;
+    opacity: 0; animation: fadeUp 0.8s var(--ease) 0.8s forwards;
+  }
+  .hero-sub {
+    font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+    font-weight: 500; letter-spacing: 0.08em;
+    color: var(--text-dim); max-width: 480px; margin: 0 auto 40px;
+    opacity: 0; animation: fadeUp 0.8s var(--ease) 1s forwards;
+  }
+  .hero-ctas {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.8s var(--ease) 1.2s forwards;
+  }
+  .btn-primary {
+    background: var(--gold); color: var(--black);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 14px 32px; border: none; cursor: pointer; border-radius: 2px;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 13px 32px; border: 1px solid var(--grey-light); cursor: pointer; border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  /* Scroll indicator */
+  .scroll-ind {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;
+    opacity: 0; animation: fadeIn 1s 2s forwards;
+  }
+  .scroll-ind span {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim);
+  }
+  .scroll-dot {
+    width: 1px; height: 48px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(0.6); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  /* ─── SECTION BASE ───────────────────────────────────────────── */
+  section { padding: 100px 40px; position: relative; }
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px; font-weight: 600;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    letter-spacing: 0.05em; line-height: 0.95;
+    margin-bottom: 40px;
+  }
+  .section-divider {
+    width: 48px; height: 2px; background: var(--gold); margin-bottom: 32px;
+  }
+  .container { max-width: 1180px; margin: 0 auto; }
+
+  /* Reveal animation */
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ─── ABOUT ──────────────────────────────────────────────────── */
+  #about { background: var(--black); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .about-photo-wrap {
+    position: relative;
+  }
+  .about-photo-wrap::before {
+    content: '';
+    position: absolute; top: -16px; left: -16px; right: 16px; bottom: 16px;
+    border: 1px solid var(--gold-dim); z-index: 0; border-radius: 2px;
+  }
+  .about-photo-wrap::after {
+    content: '';
+    position: absolute; top: 16px; left: 16px; right: -16px; bottom: -16px;
+    background: var(--gold-dim); z-index: 0; border-radius: 2px;
+  }
+  .about-photo {
+    position: relative; z-index: 1;
+    width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top;
+    filter: grayscale(20%) contrast(1.1);
+    border-radius: 2px;
+  }
+  .about-photo-placeholder {
+    position: relative; z-index: 1;
+    width: 100%; aspect-ratio: 3/4;
+    background: var(--grey);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 12px; border-radius: 2px;
+  }
+  .about-photo-placeholder span { color: var(--text-dim); font-size: 0.8rem; letter-spacing: 0.1em; }
+  .about-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--gold-dim); border: 1px solid var(--gold);
+    color: var(--gold); font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 5px 12px; border-radius: 1px; margin-bottom: 16px;
+  }
+  .about-text p {
+    font-size: 1.05rem; font-weight: 400; color: #bbb; line-height: 1.75;
+    margin-bottom: 20px;
+  }
+  .about-text p:last-of-type { margin-bottom: 32px; }
+  .about-text strong { color: var(--white); font-weight: 600; }
+  .about-text em { color: var(--gold); font-style: normal; }
+  .stats-row {
+    display: flex; gap: 32px; flex-wrap: wrap; margin-top: 32px;
+    padding-top: 32px; border-top: 1px solid var(--grey-mid);
+  }
+  .stat { display: flex; flex-direction: column; gap: 4px; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem; color: var(--gold); line-height: 1;
+  }
+  .stat-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); }
+
+  /* ─── SSAB BRAND BAR ─────────────────────────────────────────── */
+  .ssab-bar {
+    background: var(--grey); padding: 40px;
+    display: flex; align-items: center; justify-content: center;
+    border-top: 1px solid var(--grey-mid); border-bottom: 1px solid var(--grey-mid);
+    overflow: hidden;
+  }
+  .ssab-logo {
+    width: min(340px, 60vw);
+    filter: invert(1) brightness(1.6) sepia(0.3) hue-rotate(5deg) saturate(1.5);
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+  .ssab-logo:hover { opacity: 1; }
+
+  /* ─── MUSIC ──────────────────────────────────────────────────── */
+  #music { background: var(--black); }
+  .filter-tabs {
+    display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 48px;
+  }
+  .tab-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 9px 20px; border: 1px solid var(--grey-mid);
+    background: transparent; color: var(--text-dim);
+    cursor: pointer; border-radius: 1px;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { border-color: var(--gold); color: var(--white); }
+  .tab-btn.active { background: var(--gold); color: var(--black); border-color: var(--gold); }
+
+  .music-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .music-card {
+    background: var(--grey); border: 1px solid var(--grey-mid);
+    border-radius: 2px; overflow: hidden;
+    transition: transform 0.3s var(--ease), border-color 0.3s;
+    cursor: pointer;
+  }
+  .music-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--gold);
+  }
+  .music-card-thumb {
+    width: 100%; aspect-ratio: 1;
+    background: var(--grey-mid);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .music-card-thumb-inner {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, var(--grey-mid), var(--grey));
+    display: flex; align-items: center; justify-content: center;
+  }
+  .music-card-thumb svg {
+    width: 40px; height: 40px; opacity: 0.3;
+  }
+  .music-card-type {
+    position: absolute; top: 10px; left: 10px;
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    background: var(--gold); color: var(--black);
+    padding: 3px 8px; border-radius: 1px;
+  }
+  .music-card-body { padding: 16px; }
+  .music-card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.15rem; letter-spacing: 0.04em;
+    color: var(--white); margin-bottom: 4px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .music-card-meta { font-size: 0.75rem; color: var(--text-dim); }
+  .music-card-link {
+    display: flex; align-items: center; gap: 6px;
+    margin-top: 12px; color: var(--gold);
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    transition: gap 0.2s;
+  }
+  .music-card-link:hover { gap: 10px; }
+  .music-card[data-cat="single"] .music-card-type { background: #7b5ea7; color: var(--white); }
+  .music-card[data-cat="ep"] .music-card-type { background: #2a6e48; color: var(--white); }
+  .music-card[data-cat="theme"] .music-card-type { background: #1a4a7a; color: var(--white); }
+
+  /* ─── VIDEO GRID ─────────────────────────────────────────────── */
+  #videos { background: var(--grey); }
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .video-card {
+    position: relative; border-radius: 2px; overflow: hidden;
+    cursor: pointer; group: true;
+    border: 1px solid transparent;
+    transition: border-color 0.3s, transform 0.3s var(--ease);
+  }
+  .video-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .video-thumb {
+    width: 100%; aspect-ratio: 16/9;
+    object-fit: cover; display: block;
+    transition: transform 0.4s var(--ease), filter 0.3s;
+  }
+  .video-card:hover .video-thumb {
+    transform: scale(1.04); filter: brightness(0.7);
+  }
+  .video-overlay {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    justify-content: flex-end; padding: 16px;
+    background: linear-gradient(to top, rgba(7,7,7,0.9) 0%, transparent 60%);
+  }
+  .play-btn {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--gold); display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.3s; pointer-events: none;
+  }
+  .video-card:hover .play-btn { opacity: 1; }
+  .play-btn svg { width: 18px; height: 18px; fill: var(--black); margin-left: 2px; }
+  .video-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.05rem; letter-spacing: 0.04em;
+    color: var(--white); line-height: 1.2;
+  }
+  .video-sub { font-size: 0.72rem; color: var(--text-dim); margin-top: 2px; }
+
+  /* ─── BATTLE RAP ─────────────────────────────────────────────── */
+  #battles { background: var(--black); }
+  .battle-intro {
+    max-width: 640px; font-size: 1.05rem; color: #bbb; line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  /* ─── FREESTYLES ─────────────────────────────────────────────── */
+  #freestyles { background: var(--grey); }
+
+  /* ─── CONTACT ────────────────────────────────────────────────── */
+  #contact {
+    background: var(--black);
+    text-align: center; padding: 120px 40px;
+  }
+  .contact-inner { max-width: 560px; margin: 0 auto; }
+  .contact-inner .section-title { font-size: clamp(2.8rem, 7vw, 5rem); }
+  .contact-inner p {
+    font-size: 1rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 40px;
+  }
+  .contact-email {
+    display: inline-block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem; letter-spacing: 0.08em;
+    color: var(--gold);
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 2px; margin-bottom: 48px;
+    transition: opacity 0.2s;
+  }
+  .contact-email:hover { opacity: 0.7; }
+  .socials-row {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 32px;
+  }
+  .social-link {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--grey); border: 1px solid var(--grey-mid);
+    color: var(--white); padding: 12px 20px; border-radius: 2px;
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .social-link:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+  .social-link svg { width: 16px; height: 16px; fill: currentColor; }
+
+  /* ─── FOOTER ─────────────────────────────────────────────────── */
+  footer {
+    background: var(--grey); border-top: 1px solid var(--grey-mid);
+    padding: 40px; text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem;
+    color: var(--gold); letter-spacing: 0.1em; margin-bottom: 8px;
+  }
+  footer p { font-size: 0.75rem; color: var(--text-dim); letter-spacing: 0.08em; }
+
+  /* ─── LIGHTBOX ───────────────────────────────────────────────── */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 2000;
+    background: rgba(0,0,0,0.92); align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox-inner {
+    position: relative; width: 100%; max-width: 880px;
+    background: var(--grey); border: 1px solid var(--grey-mid); border-radius: 2px;
+  }
+  .lightbox-close {
+    position: absolute; top: -16px; right: -16px; width: 36px; height: 36px;
+    background: var(--gold); color: var(--black); border: none;
+    border-radius: 50%; cursor: pointer; font-size: 1.1rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; z-index: 1;
+    transition: background 0.2s;
+  }
+  .lightbox-close:hover { background: var(--gold-light); }
+  .lightbox-frame {
+    width: 100%; aspect-ratio: 16/9;
+    border: none; border-radius: 2px;
+  }
+
+  /* ─── GOLD LINE DIVIDER ──────────────────────────────────────── */
+  .gold-rule {
+    height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 0;
+  }
+
+  /* ─── CURSOR GLOW ────────────────────────────────────────────── */
+  .cursor-glow {
+    position: fixed; width: 400px; height: 400px;
+    border-radius: 50%; pointer-events: none; z-index: 0;
+    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s;
+  }
+
+  /* ─── RESPONSIVE ─────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    section { padding: 80px 24px; }
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .about-photo-wrap { max-width: 380px; margin: 0 auto; }
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+  }
+  @media (max-width: 600px) {
+    .music-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+    .video-grid { grid-template-columns: 1fr; }
+    .stats-row { gap: 20px; }
+    #contact { padding: 80px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- CURSOR GLOW -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+    <iframe class="lightbox-frame" id="lightboxFrame" allowfullscreen
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+    </iframe>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#hero" class="nav-logo">$TARBORN</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#music">Music</a></li>
+    <li><a href="#videos">Videos</a></li>
+    <li><a href="#battles">Battles</a></li>
+    <li><a href="#freestyles">Freestyles</a></li>
+    <li><a href="#contact" class="nav-cta">Book</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" class="mobile-link">About</a>
+  <a href="#music" class="mobile-link">Music</a>
+  <a href="#videos" class="mobile-link">Videos</a>
+  <a href="#battles" class="mobile-link">Battles</a>
+  <a href="#freestyles" class="mobile-link">Freestyles</a>
+  <a href="#contact" class="mobile-link" style="color:var(--gold)">Book</a>
+</div>
+
+<!-- ═══ HERO ══════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hero-bg-img"></div>
+    <div class="hero-bg-grad"></div>
+  </div>
+  <div class="hero-lines"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Queens, NYC &nbsp;·&nbsp; Dot Mobb &nbsp;·&nbsp; Official EPK</p>
+    <img src="assets/starborn-logo.png" alt="$TARBORN" class="hero-logo" id="heroLogo">
+    <p class="hero-tagline">Some Stars Are Built Born</p>
+    <p class="hero-sub">Recording Artist &nbsp;·&nbsp; Battle Rapper &nbsp;·&nbsp; Producer &amp; Engineer</p>
+    <div class="hero-ctas">
+      <a href="#music" class="btn-primary">Stream Music</a>
+      <a href="#contact" class="btn-outline">Book $tarborn</a>
+    </div>
+  </div>
+  <div class="scroll-ind">
+    <span>Scroll</span>
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- ═══ SSAB BAR ══════════════════════════════════════════════════ -->
+<div class="ssab-bar reveal">
+  <img src="assets/ssab-logo.png" alt="$$AB — Some Stars Are Built Born" class="ssab-logo">
+</div>
+
+<div class="gold-rule"></div>
+
+<!-- ═══ ABOUT ══════════════════════════════════════════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-photo-wrap reveal">
+        <img src="assets/press-photo.jpg" alt="$tarborn press photo" class="about-photo" id="aboutPhoto">
+        <div class="about-photo-placeholder" id="photoPlaceholder" style="display:none">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1">
+            <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          <span>press-photo.jpg</span>
+        </div>
+      </div>
+      <div class="about-text reveal reveal-delay-2">
+        <span class="about-tag">
+          <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="currentColor"/></svg>
+          Artist Bio
+        </span>
+        <div class="section-label">Queens, NYC</div>
+        <h2 class="section-title">Built Different.<br>Born Ready.</h2>
+        <div class="section-divider"></div>
+        <p>
+          Out of <strong>South Jamaica, Queens</strong> — one of the most unforgiving proving grounds in hip-hop —
+          emerged <em>$tarborn</em>. A name that carries its own thesis: some stars are manufactured, some are lucky.
+          $tarborn is the rare thing in between — a artist who <strong>built</strong> himself from the ground up and was
+          <strong>born</strong> with an undeniable gift for the craft.
+        </p>
+        <p>
+          A proud member of <em>Dot Mobb</em>, $tarborn has carved a lane where the streets meet the studio.
+          As a battle rapper he's proven himself on stages where only the sharpest survive — bars so precise
+          they hit like warrants. As a recording artist, he writes, produces, and engineers his own projects,
+          keeping full creative control from concept to cut.
+        </p>
+        <p>
+          His catalog spans raw EPs crafted entirely in-house, collaborative projects with the Mobb,
+          and documentary and podcast theme songs that show the reach of his pen. The brand is <em>$$AB</em> —
+          <strong>Some Stars Are Built Born</strong> — and every release is another bar of proof.
+        </p>
+        <div class="stats-row">
+          <div class="stat">
+            <span class="stat-num">5+</span>
+            <span class="stat-label">EPs Released</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">3</span>
+            <span class="stat-label">Albums / Projects</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">10+</span>
+            <span class="stat-label">Battle Bouts</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">Independent</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- ═══ MUSIC ══════════════════════════════════════════════════ -->
+<section id="music">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Discography</div>
+      <h2 class="section-title">Music Catalog</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="filter-tabs reveal">
+      <button class="tab-btn active" data-filter="all">All</button>
+      <button class="tab-btn" data-filter="single">Singles</button>
+      <button class="tab-btn" data-filter="album">Projects</button>
+      <button class="tab-btn" data-filter="ep">EPs</button>
+      <button class="tab-btn" data-filter="theme">Theme Work</button>
+    </div>
+
+    <div class="music-grid" id="musicGrid">
+
+      <!-- SINGLES -->
+      <div class="music-card reveal" data-cat="single">
+        <div class="music-card-thumb">
+          <div class="music-card-thumb-inner">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <span class="music-card-type">Single</span>
+        </div>
+        <div class="music-card-body">
+          <div class="music-card-title">Dirty Money Spending</div>
+          <div class="music-card-meta">$tarborn &nbsp;·&nbsp; 2024</div>
+          <a class="music-card-link" href="https://distrokid.com/hyperfollow/tarborn/dirty-money-spending?ref=release" target="_blank" rel="noopener">
+            Stream ➝
+          </a>
+        </div>
+      </div>
+
+      <div class="music-card reveal reveal-delay-1" data-cat="single">
+        <div class="music-card-thumb">
+          <div class="music-card-thumb-inner">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <span class="music-card-type">Single</span>
+        </div>
+        <div class="music-card-body">
+          <div class="music-card-title">Fade Away</div>
+          <div class="music-card-meta">$tarborn &nbsp;·&nbsp; 2024</div>
+          <a class="music-card-link" href="https://distrokid.com/hyperfollow/tarborn/fade-away?ref=release" target="_blank" rel="noopener">
+            Stream ➝
+          </a>
+        </div>
+      </div>
+
+      <div class="music-card reveal reveal-delay-2" data-cat="single">
+        <div class="music-card-thumb">
+          <div class="music-card-thumb-inner">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <span class="music-card-type">Single</span>
+        </div>
+        <div class="music-card-body">
+          <div class="music-card-title">Truth No Lies</div>
+          <div class="music-card-meta">$tarborn &nbsp;·&nbsp; 2024</div>
+          <a class="music-card-link" href="https://distrokid.com/hyperfollow/tarborn/truth-no-lies?ref=release" target="_blank" rel="noopener">
+            Stream ➝
+          </a>
+        </div>
+      </div>
+
+      <!-- ALBUMS / PROJECTS -->
+      <div class="music-card reveal" data-cat="album">
+        <div class="music-card-thumb">
+          <div class="music-card-thumb-inner">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+          </div>
+          <span class="music-card-type">Album</span>
+        </div>
+        <div class="music-card-body">
+          <div class="music-card-title">Married To Jane (Re-Rolled)</div>
+          <div class="music-card-meta">$tarborn &nbsp;·&nbsp; Project</div>
+          <a class="music-card-link" href="https://distrokid.com/hyperfollow/tarborn/married-to-jane-re-rolled?ref=release" target="_blank" rel="noopener">
+            Stream ➝
+          </a>
+        </div>
+      </div>
+
+      <div class="music-card reveal reveal-delay-1" data-cat="album">
+        <div class="music-card-thumb">
+          <div class="music-card-thumb-inner">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+          </div>
+          <span class="music-card-type">Album</span>
+        </div>
+        <div class="music-card-body">
+          <div class="music-card-title">$.$.A.B.</div>
+          <div class="music-card-meta">$tarborn &nbsp;·&nbsp; Project</div>
+          <a class="music-card-link" href="https://distrokid.com/dashboard/album/?albumuuid=8691170D-ABB8-4EF7-B093555693332618" target="_blank" rel="noopener">
+            Stream ➝
+          </a>
+        </div>
+      </div>
+
+      <div class="music-card reveal reveal-delay-2" data-cat="album">
+        <div class="music-card-thumb">
+          <div class="music-card-thumb-inner">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+          </div>
+          <span class="music-card-type">Album</span>
+        </div>
+        <div class="music-card-body">
+          <div class="music-card-title">STARBORN</div>
+          <div class="music-card-meta">$tarborn &nbsp;·&nbsp; Project</div>
+          <a class="music-card-link" href="https://distrokid.com/hyperfollow/tarborn/starborn?ref=release" target="_blank" rel="noopener">
+            Stream ➝
+          </a>
+        </div>
+      </div>
+
+      <!-- EPs -->
+      <div class="music-card reveal" data-cat="ep">
+        <div class="music-card-thumb">
+          <div class="music-card-thumb-inner">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M9 18V6l12-3v12"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="15" r="3"/></svg>
+          </div>
+          <span class="music-card-type">EP</span>
+        </div>
+        <div class="music-card-body">
+          <div class="music-card-title">Hands On</div>
+          <div class="music-card-meta">Written, Produced &amp; Engineered by $TARBORN</div>
+          <a class="music-card-link" href="https://distrokid.com/hyperfollow/tarborn/hands-on?ref=release" target="_blank" rel="noopener">
+            Stream ➝
+          </a>
+        </div>
+      </div>
+
+      <div class="music-card reveal reveal-delay-1" data-cat="ep">
+        <div class="music-card-thumb">
+          <div class="music-card-thumb-inner">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M9 18V6l12-3v12"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="15" r="3"/></svg>
+          </div>
+          <span class="music-card-type">EP</span>
+        </div>
+        <div class="music-card-body">
+          <div class="music-card-title">Losses Are Lessons In Life</div>
+          <div class="music-card-meta">Written, Produced &amp; Engineered by $TARBORN</div>
+          <a class="music-card-link" href="https://distrokid.com/hyperfollow/tarborn/losses-are-lessons-in-life?ref=release" target="_blank" rel="noopener">
+            Stream ➝
+          </a>
+        </div>
+      </div>
+
+      <div class="music-card reveal reveal-delay-2" data-cat="ep">
+        <div class="music-card-thumb">
+          <div class="music-card-thumb-inner">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M9 18V6l12-3v12"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="15" r="3"/></svg>
+          </div>
+          <span class="music-card-type">EP</span>
+        </div>
+        <div class="music-card-body">
+          <div class="music-card-title">DunBorn</div>
+          <div class="music-card-meta">$tarborn &nbsp;·&nbsp; EP</div>
+          <a class="music-card-link" href="https://distrokid.com/hyperfollow/tarborn/dunborn?ref=release" target="_blank" rel="noopener">
+            Stream ➝
+          </a>
+        </div>
+      </div>
+
+      <div class="music-card reveal" data-cat="ep">
+        <div class="music-card-thumb">
+          <div class="music-card-thumb-inner">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M9 18V6l12-3v12"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="15" r="3"/></svg>
+          </div>
+          <span class="music-card-type">EP</span>
+        </div>
+        <div class="music-card-body">
+          <div class="music-card-title">Emotional Rollercoaster</div>
+          <div class="music-card-meta">$tarborn &nbsp;·&nbsp; EP</div>
+          <a class="music-card-link" href="https://distrokid.com/hyperfollow/tarborn/emotional-rollercoaster?ref=release" target="_blank" rel="noopener">
+            Stream ➝
+          </a>
+        </div>
+      </div>
+
+      <div class="music-card reveal reveal-delay-1" data-cat="ep">
+        <div class="music-card-thumb">
+          <div class="music-card-thumb-inner">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M9 18V6l12-3v12"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="15" r="3"/></svg>
+          </div>
+          <span class="music-card-type">EP</span>
+        </div>
+        <div class="music-card-body">
+          <div class="music-card-title">Rather Be Real</div>
+          <div class="music-card-meta">$tarborn &nbsp;·&nbsp; EP</div>
+          <a class="music-card-link" href="https://distrokid.com/hyperfollow/tarborn/rather-be-real?ref=release" target="_blank" rel="noopener">
+            Stream ➝
+          </a>
+        </div>
+      </div>
+
+      <!-- THEME WORK -->
+      <div class="music-card reveal" data-cat="theme">
+        <div class="music-card-thumb">
+          <div class="music-card-thumb-inner">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <span class="music-card-type">Theme</span>
+        </div>
+        <div class="music-card-body">
+          <div class="music-card-title">Couldn't Believe</div>
+          <div class="music-card-meta">A Cops &amp; Robbers Story Documentary Theme</div>
+          <a class="music-card-link" href="https://distrokid.com/hyperfollow/tarborn/couldnt-believe-a-cops--robbers-story-documentary-theme-song?ref=release" target="_blank" rel="noopener">
+            Stream ➝
+          </a>
+        </div>
+      </div>
+
+      <div class="music-card reveal reveal-delay-1" data-cat="theme">
+        <div class="music-card-thumb">
+          <div class="music-card-thumb-inner">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <span class="music-card-type">Theme</span>
+        </div>
+        <div class="music-card-body">
+          <div class="music-card-title">Why Would I Stop</div>
+          <div class="music-card-meta">Theme from "The Vaping Fix" Podcast</div>
+          <a class="music-card-link" href="https://music.apple.com/us/album/why-would-i-stop-theme-from-the-podcast-the-vaping/1566903528?i=1566903529" target="_blank" rel="noopener">
+            Stream ➝
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /musicGrid -->
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- ═══ MUSIC VIDEOS ══════════════════════════════════════════════════ -->
+<section id="videos">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Visuals</div>
+      <h2 class="section-title">Music Videos</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="video-grid">
+
+      <div class="video-card reveal" data-vid="xXZcAtwluuA">
+        <img class="video-thumb" src="https://img.youtube.com/vi/xXZcAtwluuA/hqdefault.jpg" alt="Convertible Dreams" loading="lazy">
+        <div class="video-overlay">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="video-title">Convertible Dreams</div>
+          <div class="video-sub">$tarborn</div>
+        </div>
+      </div>
+
+      <div class="video-card reveal reveal-delay-1" data-vid="bax0vT5l2IM">
+        <img class="video-thumb" src="https://img.youtube.com/vi/bax0vT5l2IM/hqdefault.jpg" alt="Me, My Gas, &amp; I" loading="lazy">
+        <div class="video-overlay">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="video-title">Me, My Gas, &amp; I</div>
+          <div class="video-sub">$tarborn</div>
+        </div>
+      </div>
+
+      <div class="video-card reveal reveal-delay-2" data-vid="2Tq2Yi11rZM">
+        <img class="video-thumb" src="https://img.youtube.com/vi/2Tq2Yi11rZM/hqdefault.jpg" alt="Hennessy" loading="lazy">
+        <div class="video-overlay">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="video-title">Hennessy</div>
+          <div class="video-sub">$tarborn</div>
+        </div>
+      </div>
+
+      <div class="video-card reveal" data-vid="c5I-t_fZs60">
+        <img class="video-thumb" src="https://img.youtube.com/vi/c5I-t_fZs60/hqdefault.jpg" alt="Honor Roll" loading="lazy">
+        <div class="video-overlay">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="video-title">Honor Roll</div>
+          <div class="video-sub">$tarborn x Gav Sinatra</div>
+        </div>
+      </div>
+
+      <div class="video-card reveal reveal-delay-1" data-vid="_yGWcicF71w">
+        <img class="video-thumb" src="https://img.youtube.com/vi/_yGWcicF71w/hqdefault.jpg" alt="Free Smoke Freestyle" loading="lazy">
+        <div class="video-overlay">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="video-title">Free Smoke Freestyle</div>
+          <div class="video-sub">$tarborn</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- ═══ BATTLE RAP ══════════════════════════════════════════════════ -->
+<section id="battles">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Battle Rap</div>
+      <h2 class="section-title">In The Ring</h2>
+      <div class="section-divider"></div>
+      <p class="battle-intro">
+        On stage or on the mic, $tarborn doesn't duck. Battle rap is where bars get stress-tested —
+        no hooks, no safety net, just raw pen and ice-cold delivery. Watch the footage below.
+      </p>
+    </div>
+
+    <div class="filter-tabs reveal" id="battleTabs">
+      <button class="tab-btn active" data-bfilter="all">All</button>
+      <button class="tab-btn" data-bfilter="onbeat">On Beat</button>
+      <button class="tab-btn" data-bfilter="acapella">Acapella</button>
+    </div>
+
+    <div class="video-grid" id="battleGrid">
+
+      <!-- ON BEAT -->
+      <div class="video-card reveal" data-vid="ygPKv86umfQ" data-bcat="onbeat">
+        <img class="video-thumb" src="https://img.youtube.com/vi/ygPKv86umfQ/hqdefault.jpg" alt="Triple Threat Match" loading="lazy">
+        <div class="video-overlay">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="video-title">Triple Threat Match</div>
+          <div class="video-sub">On Beat Battle</div>
+        </div>
+      </div>
+
+      <div class="video-card reveal reveal-delay-1" data-vid="92RpaDGLLK0" data-bcat="onbeat">
+        <img class="video-thumb" src="https://img.youtube.com/vi/92RpaDGLLK0/hqdefault.jpg" alt="vs June Drama" loading="lazy">
+        <div class="video-overlay">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="video-title">$tarborn vs. June Drama</div>
+          <div class="video-sub">On Beat Battle</div>
+        </div>
+      </div>
+
+      <div class="video-card reveal reveal-delay-2" data-vid="3FEfUffpd-M" data-bcat="onbeat">
+        <img class="video-thumb" src="https://img.youtube.com/vi/3FEfUffpd-M/hqdefault.jpg" alt="vs Chosen" loading="lazy">
+        <div class="video-overlay">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="video-title">$tarborn vs. Chosen</div>
+          <div class="video-sub">On Beat Battle</div>
+        </div>
+      </div>
+
+      <!-- ACAPELLA -->
+      <div class="video-card reveal" data-vid="YVYekRv-dMg" data-bcat="acapella">
+        <img class="video-thumb" src="https://img.youtube.com/vi/YVYekRv-dMg/hqdefault.jpg" alt="vs Chuco" loading="lazy">
+        <div class="video-overlay">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="video-title">$tarborn vs. Chuco</div>
+          <div class="video-sub">Acapella Battle</div>
+        </div>
+      </div>
+
+      <div class="video-card reveal reveal-delay-1" data-vid="5sY3bc2qRSg" data-bcat="acapella">
+        <img class="video-thumb" src="https://img.youtube.com/vi/5sY3bc2qRSg/hqdefault.jpg" alt="vs Cell" loading="lazy">
+        <div class="video-overlay">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="video-title">$tarborn vs. Cell</div>
+          <div class="video-sub">Acapella Battle</div>
+        </div>
+      </div>
+
+      <div class="video-card reveal reveal-delay-2" data-vid="BnhweZrsc0Y" data-bcat="acapella">
+        <img class="video-thumb" src="https://img.youtube.com/vi/BnhweZrsc0Y/hqdefault.jpg" alt="vs Surjahh" loading="lazy">
+        <div class="video-overlay">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="video-title">$tarborn vs. Surjahh</div>
+          <div class="video-sub">Acapella Battle</div>
+        </div>
+      </div>
+
+      <div class="video-card reveal" data-vid="lCWeIRk9-zI" data-bcat="acapella">
+        <img class="video-thumb" src="https://img.youtube.com/vi/lCWeIRk9-zI/hqdefault.jpg" alt="vs Dan" loading="lazy">
+        <div class="video-overlay">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="video-title">$tarborn vs. Dan</div>
+          <div class="video-sub">Acapella Battle</div>
+        </div>
+      </div>
+
+      <div class="video-card reveal reveal-delay-1" data-vid="vapH9sJr0o0" data-bcat="acapella">
+        <img class="video-thumb" src="https://img.youtube.com/vi/vapH9sJr0o0/hqdefault.jpg" alt="vs Dizzy Spades" loading="lazy">
+        <div class="video-overlay">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="video-title">$tarborn vs. Dizzy $pades</div>
+          <div class="video-sub">Acapella Battle</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- ═══ FREESTYLES ══════════════════════════════════════════════════ -->
+<section id="freestyles">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Freestyles</div>
+      <h2 class="section-title">Off The Dome</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="video-grid">
+
+      <div class="video-card reveal" data-vid="awuheuBwDkY">
+        <img class="video-thumb" src="https://img.youtube.com/vi/awuheuBwDkY/hqdefault.jpg" alt="Verbal Warzone Freestyle" loading="lazy">
+        <div class="video-overlay">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="video-title">Verbal Warzone L.M.H.S Freestyle</div>
+          <div class="video-sub">$tarborn</div>
+        </div>
+      </div>
+
+      <div class="video-card reveal reveal-delay-1" data-vid="ZESkThMVL1k">
+        <img class="video-thumb" src="https://img.youtube.com/vi/ZESkThMVL1k/hqdefault.jpg" alt="Money In The Bank" loading="lazy">
+        <div class="video-overlay">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="video-title">Money In The Bank</div>
+          <div class="video-sub">$tarborn</div>
+        </div>
+      </div>
+
+      <div class="video-card reveal reveal-delay-2" data-vid="7KaEgJWBrT0">
+        <img class="video-thumb" src="https://img.youtube.com/vi/7KaEgJWBrT0/hqdefault.jpg" alt="Akward Silence One Mic Freestyle" loading="lazy">
+        <div class="video-overlay">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="video-title">Akward Silence One Mic Freestyle</div>
+          <div class="video-sub">$tarborn</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- ═══ CONTACT ══════════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <div class="section-label">Bookings &amp; Press</div>
+      <h2 class="section-title">Work With $tarborn</h2>
+      <div class="section-divider" style="margin: 0 auto 32px;"></div>
+      <p>
+        For bookings, features, press inquiries, sync licensing, and brand partnerships —
+        reach out directly. $tarborn is available for shows, features, interviews, and collaborations worldwide.
+      </p>
+
+      <!-- ╔══════════════════════════════════════════════════════════╗
+           ║  BOOKING EMAIL — replace the placeholder below          ║
+           ║  Search for: BOOKING_EMAIL_PLACEHOLDER                  ║
+           ╚══════════════════════════════════════════════════════════╝ -->
+      <a href="mailto:BOOKING_EMAIL_PLACEHOLDER@gmail.com" class="contact-email">
+        BOOKING_EMAIL_PLACEHOLDER@gmail.com
+      </a>
+
+      <div class="socials-row">
+        <a class="social-link" href="https://instagram.com/starbeezly__" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          @starbeezly__
+        </a>
+        <a class="social-link" href="https://x.com/starbeezly__" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          @starbeezly__
+        </a>
+        <a class="social-link" href="https://tiktok.com/@starbeezly__" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.77 1.52V6.76a4.85 4.85 0 01-1-.07z"/></svg>
+          @starbeezly__
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ══════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-logo">$TARBORN</div>
+  <p>© 2025 $tarborn · $$AB · Dot Mobb · Queens, NYC · All Rights Reserved</p>
+  <p style="margin-top:8px; font-size:0.65rem; color:#444">Some Stars Are Built Born™</p>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  /* ── Cursor glow ───────────────────────────────────────────── */
+  const glow = document.getElementById('cursorGlow');
+  let mx = 0, my = 0, gx = 0, gy = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function animGlow() {
+    gx += (mx - gx) * 0.08;
+    gy += (my - gy) * 0.08;
+    glow.style.left = gx + 'px';
+    glow.style.top = gy + 'px';
+    requestAnimationFrame(animGlow);
+  })();
+
+  /* ── Nav scroll state ──────────────────────────────────────────── */
+  const nav = document.getElementById('mainNav');
+  const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+  const sections = document.querySelectorAll('section[id]');
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+    // Active link
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+    });
+  }, { passive: true });
+
+  /* ── Hamburger ───────────────────────────────────────────── */
+  const ham = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  ham.addEventListener('click', () => {
+    ham.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mobile-link').forEach(l => {
+    l.addEventListener('click', () => {
+      ham.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* ── Reveal on scroll ──────────────────────────────────────────── */
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => revealObs.observe(el));
+
+  /* ── Lightbox ─────────────────────────────────────────────── */
+  const lightbox = document.getElementById('lightbox');
+  const lbFrame = document.getElementById('lightboxFrame');
+  const lbClose = document.getElementById('lightboxClose');
+
+  function openLightbox(vid) {
+    lbFrame.src = 'https://www.youtube.com/embed/' + vid + '?autoplay=1&rel=0&modestbranding=1';
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lbFrame.src = '';
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  lbClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  document.querySelectorAll('.video-card[data-vid]').forEach(card => {
+    card.addEventListener('click', () => openLightbox(card.dataset.vid));
+  });
+
+  /* ── Music filter tabs ──────────────────────────────────────────── */
+  const musicTabs = document.querySelectorAll('[data-filter]');
+  const musicCards = document.querySelectorAll('#musicGrid .music-card');
+  musicTabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      musicTabs.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      musicCards.forEach(c => {
+        const show = f === 'all' || c.dataset.cat === f;
+        c.style.display = show ? '' : 'none';
+      });
+    });
+  });
+
+  /* ── Battle filter tabs ──────────────────────────────────────────── */
+  const battleTabs = document.querySelectorAll('[data-bfilter]');
+  const battleCards = document.querySelectorAll('#battleGrid .video-card');
+  battleTabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      battleTabs.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.bfilter;
+      battleCards.forEach(c => {
+        const show = f === 'all' || c.dataset.bcat === f;
+        c.style.display = show ? '' : 'none';
+      });
+    });
+  });
+
+  /* ── Press photo fallback ─────────────────────────────────────────── */
+  const aboutPhoto = document.getElementById('aboutPhoto');
+  const photoPlaceholder = document.getElementById('photoPlaceholder');
+  if (aboutPhoto) {
+    aboutPhoto.addEventListener('error', () => {
+      aboutPhoto.style.display = 'none';
+      if (photoPlaceholder) photoPlaceholder.style.display = 'flex';
+    });
+  }
+
+  /* ── Hero logo fallback (show text if logo missing) ───────────────── */
+  const heroLogo = document.getElementById('heroLogo');
+  if (heroLogo) {
+    heroLogo.addEventListener('error', () => {
+      heroLogo.style.display = 'none';
+      const h1 = document.createElement('h1');
+      h1.textContent = '$TARBORN';
+      h1.style.cssText = 'font-family:"Bebas Neue",sans-serif;font-size:clamp(4rem,14vw,9rem);letter-spacing:0.06em;color:#f5f5f5;line-height:0.9;margin-bottom:16px;opacity:0;animation:fadeUp 1s cubic-bezier(0.25,0.46,0.45,0.94) 0.5s forwards';
+      heroLogo.parentNode.insertBefore(h1, heroLogo);
+    });
+  }
+
+})();
+</script>
+</body>
+</html>
