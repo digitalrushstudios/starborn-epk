@@ -137,7 +137,7 @@
   #hero {
     position: relative; min-height: 100vh;
     display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
-    text-align: center; padding: 120px 24px 110px;
+    text-align: center; padding: 120px 24px 80px;
     overflow: hidden;
   }
   .hero-bg {
@@ -145,13 +145,12 @@
     background: var(--black);
   }
   .hero-bg-img {
-    position: absolute; inset: -30px;
+    position: absolute; inset: 0;
     background-image: url('assets/press-photo.jpg');
-    background-size: cover; background-position: center 18%;
-    opacity: 0.32;
-    filter: grayscale(50%) contrast(1.15);
-    transition: transform 0.12s ease-out;
-    will-change: transform;
+    background-size: cover; background-position: center 15%;
+    background-attachment: scroll;
+    opacity: 0.38;
+    filter: grayscale(40%) contrast(1.15);
   }
   .hero-bg-grad {
     position: absolute; inset: 0;
@@ -1152,7 +1151,7 @@
       </div>
 
       <div class="video-card reveal reveal-delay-1" data-vid="bax0vT5l2IM">
-        <img class="video-thumb" src="https://img.youtube.com/vi/bax0vT5l2IM/hqdefault.jpg" alt="Me, My Gas, &amp; I" loading="lazy">
+        <img class="video-thumb" src="https://img.youtube.com/vi/bax0vT5l2IM/hqdefault.jpg" alt="Me, My Gas, & I" loading="lazy">
         <div class="video-overlay">
           <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="video-title">Me, My Gas, &amp; I</div>
@@ -1494,23 +1493,6 @@
     });
   });
 
-  /* ── Hero mouse parallax ──────────────────────────────────── */
-  const heroBgImg = document.querySelector('.hero-bg-img');
-  const heroEl = document.getElementById('hero');
-  let heroParallaxActive = false;
-  if (heroBgImg && heroEl) {
-    heroEl.addEventListener('mousemove', e => {
-      const r = heroEl.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5;
-      const y = (e.clientY - r.top) / r.height - 0.5;
-      heroBgImg.style.transform = `translate(${x * -22}px, ${y * -16}px)`;
-      heroBgImg.style.transition = 'transform 0.08s linear';
-    });
-    heroEl.addEventListener('mouseleave', () => {
-      heroBgImg.style.transform = 'translate(0,0)';
-      heroBgImg.style.transition = 'transform 0.9s var(--ease)';
-    });
-  }
 
   /* ── Honor Roll spotlight autoplay on scroll ───────────────── */
   const spotlightFrame = document.getElementById('spotlightFrame');
