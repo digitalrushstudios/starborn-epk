@@ -267,6 +267,59 @@
     to { opacity: 1; }
   }
 
+  /* ─── HERO PARTICLES ────────────────────────────────────────── */
+  #heroCanvas {
+    position: absolute; inset: 0; z-index: 1;
+    pointer-events: none; opacity: 0.55;
+  }
+
+  /* ─── PRESS SECTION ──────────────────────────────────────────── */
+  #press { background: var(--black); }
+  .press-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;
+  }
+  .press-block {
+    background: var(--grey); border: 1px solid var(--grey-mid);
+    border-radius: 3px; padding: 36px; position: relative; overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .press-block:hover { border-color: rgba(201,168,76,0.4); }
+  .press-block::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+  .press-block-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem; letter-spacing: 0.06em; color: var(--white); margin-bottom: 16px;
+  }
+  .press-block p { font-size: 0.95rem; color: #aaa; line-height: 1.7; margin-bottom: 20px; }
+  .press-dl-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; border: 1px solid var(--gold);
+    color: var(--gold); font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 10px 20px; border-radius: 2px; text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .press-dl-btn:hover { background: var(--gold); color: var(--black); }
+  .press-dl-btn svg { width: 14px; height: 14px; }
+  .platform-row {
+    display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px;
+  }
+  .platform-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    color: #ccc; font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 8px 14px; border-radius: 2px; text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .platform-badge:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.07); }
+  .platform-badge svg { width: 16px; height: 16px; flex-shrink: 0; }
+  @media (max-width: 700px) {
+    .press-grid { grid-template-columns: 1fr; }
+  }
+
   /* ─── SECTION BASE ───────────────────────────────────────────── */
   section { padding: 100px 40px; position: relative; }
   .section-label {
@@ -732,6 +785,7 @@
     <li><a href="#videos">Videos</a></li>
     <li><a href="#battles">Battles</a></li>
     <li><a href="#freestyles">Freestyles</a></li>
+    <li><a href="#press">Press</a></li>
     <li><a href="#contact" class="nav-cta">Book</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -746,11 +800,13 @@
   <a href="#videos" class="mobile-link">Videos</a>
   <a href="#battles" class="mobile-link">Battles</a>
   <a href="#freestyles" class="mobile-link">Freestyles</a>
+  <a href="#press" class="mobile-link">Press</a>
   <a href="#contact" class="mobile-link" style="color:var(--gold)">Book</a>
 </div>
 
 <!-- ═══ HERO ══════════════════════════════════════════════════════ -->
 <section id="hero">
+  <canvas id="heroCanvas"></canvas>
   <div class="hero-bg">
     <div class="hero-bg-img"></div>
     <div class="hero-bg-grad"></div>
@@ -822,19 +878,19 @@
         </p>
         <div class="stats-row">
           <div class="stat">
-            <span class="stat-num">5+</span>
+            <span class="stat-num" data-count="5" data-suffix="+">5+</span>
             <span class="stat-label">EPs Released</span>
           </div>
           <div class="stat">
-            <span class="stat-num">3</span>
+            <span class="stat-num" data-count="3" data-suffix="">3</span>
             <span class="stat-label">Albums / Projects</span>
           </div>
           <div class="stat">
-            <span class="stat-num">10+</span>
+            <span class="stat-num" data-count="10" data-suffix="+">10+</span>
             <span class="stat-label">Battle Bouts</span>
           </div>
           <div class="stat">
-            <span class="stat-num">100%</span>
+            <span class="stat-num" data-count="100" data-suffix="%">100%</span>
             <span class="stat-label">Independent</span>
           </div>
         </div>
@@ -1340,6 +1396,55 @@
 
 <div class="gold-rule"></div>
 
+<!-- ═══ PRESS ════════════════════════════════════════════════════ -->
+<section id="press">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Press Kit</div>
+      <h2 class="section-title">For The Media</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="press-grid">
+      <div class="press-block reveal">
+        <div class="press-block-title">Artist Bio &amp; Info</div>
+        <p>
+          $tarborn is a Queens, NYC recording artist, battle rapper, producer, and engineer.
+          Member of Dot Mobb. Brand: $$AB — Some Stars Are Built Born™.
+          Full creative control across all releases. Available for interviews, features, and press coverage.
+        </p>
+        <p style="font-size:0.82rem; color:#666; margin-bottom:0">
+          For hi-res press photos and full bio, contact:<br>
+          <a href="mailto:shawnxaviar@gmail.com" style="color:var(--gold);">shawnxaviar@gmail.com</a>
+        </p>
+      </div>
+      <div class="press-block reveal reveal-delay-1">
+        <div class="press-block-title">Stream On All Platforms</div>
+        <p>$tarborn's full catalog is available everywhere music is streamed.</p>
+        <div class="platform-row">
+          <a class="platform-badge" href="https://music.apple.com/us/artist/tarborn/1397746289" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            Apple Music
+          </a>
+          <a class="platform-badge" href="https://open.spotify.com/artist/4nMzEiJhB8MvNIuXIlVRbH" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            Spotify
+          </a>
+          <a class="platform-badge" href="https://www.youtube.com/@starbeezly__" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+            YouTube
+          </a>
+          <a class="platform-badge" href="https://tidal.com/search?q=tarborn" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.012 3.992L8.008 7.996 4.004 3.992 0 7.996l4.004 4.004L8.008 7.996l4.004 4.004 4.004-4.004zm4.004 4.004l-4.004 4.004 4.004 4.004L24 7.996z"/></svg>
+            Tidal
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
 <!-- ═══ CONTACT ═══════════════════════════════════════════════════ -->
 <section id="contact">
   <div class="contact-inner">
@@ -1566,6 +1671,79 @@
       h1.style.cssText = 'font-family:"Bebas Neue",sans-serif;font-size:clamp(4rem,14vw,9rem);letter-spacing:0.06em;color:#f5f5f5;line-height:0.9;margin-bottom:16px;opacity:0;animation:fadeUp 1s cubic-bezier(0.25,0.46,0.45,0.94) 0.5s forwards';
       heroLogo.parentNode.insertBefore(h1, heroLogo);
     });
+  }
+
+  /* ── Hero particle canvas ──────────────────────────────────── */
+  const canvas = document.getElementById('heroCanvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const GOLD = 'rgba(201,168,76,';
+
+    function resizeCanvas() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    function mkParticle() {
+      return {
+        x: Math.random() * canvas.width,
+        y: canvas.height + 10,
+        r: Math.random() * 1.8 + 0.4,
+        speed: Math.random() * 0.6 + 0.2,
+        opacity: Math.random() * 0.6 + 0.2,
+        drift: (Math.random() - 0.5) * 0.3
+      };
+    }
+
+    for (let i = 0; i < 80; i++) {
+      const p = mkParticle();
+      p.y = Math.random() * canvas.height;
+      particles.push(p);
+    }
+
+    function animParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p, i) => {
+        p.y -= p.speed;
+        p.x += p.drift;
+        p.opacity -= 0.0008;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = GOLD + Math.max(0, p.opacity) + ')';
+        ctx.fill();
+        if (p.y < -10 || p.opacity <= 0) particles[i] = mkParticle();
+      });
+      requestAnimationFrame(animParticles);
+    }
+    animParticles();
+  }
+
+  /* ── Count-up stats ────────────────────────────────────────── */
+  const statNums = document.querySelectorAll('.stat-num[data-count]');
+  if (statNums.length) {
+    const countObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.dataset.count, 10);
+        const suffix = el.dataset.suffix || '';
+        const duration = 1200;
+        const start = performance.now();
+        function step(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const ease = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.floor(ease * target) + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+          else el.textContent = target + suffix;
+        }
+        requestAnimationFrame(step);
+        countObs.unobserve(el);
+      });
+    }, { threshold: 0.6 });
+    statNums.forEach(el => countObs.observe(el));
   }
 
 })();
