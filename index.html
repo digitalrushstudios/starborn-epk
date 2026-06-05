@@ -163,6 +163,10 @@
     opacity: 0.42;
     filter: grayscale(30%) contrast(1.15);
   }
+  /* iOS/mobile doesn't support background-attachment: fixed */
+  @media (max-width: 900px), (hover: none) {
+    .hero-bg-img { background-attachment: scroll; }
+  }
   .hero-bg-grad {
     position: absolute; inset: 0;
     background: linear-gradient(to bottom,
@@ -1275,7 +1279,7 @@
       </div>
 
       <div class="video-card reveal reveal-delay-1" data-vid="bax0vT5l2IM">
-        <img class="video-thumb" src="https://img.youtube.com/vi/bax0vT5l2IM/hqdefault.jpg" alt="Me, My Gas, & I" loading="lazy">
+        <img class="video-thumb" src="https://img.youtube.com/vi/bax0vT5l2IM/hqdefault.jpg" alt="Me, My Gas, &amp; I" loading="lazy">
         <div class="video-overlay">
           <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="video-title">Me, My Gas, &amp; I</div>
