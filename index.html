@@ -136,8 +136,8 @@
   /* ─── HERO ───────────────────────────────────────────────────── */
   #hero {
     position: relative; min-height: 100vh;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center; padding: 120px 24px 80px;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+    text-align: center; padding: 120px 24px 100px;
     overflow: hidden;
   }
   .hero-bg {
@@ -332,15 +332,16 @@
 
   /* ─── SSAB BRAND BAR ─────────────────────────────────────────── */
   .ssab-bar {
-    background: var(--grey); padding: 40px;
+    background: var(--black); padding: 48px 40px;
     display: flex; align-items: center; justify-content: center;
     border-top: 1px solid var(--grey-mid); border-bottom: 1px solid var(--grey-mid);
     overflow: hidden;
   }
   .ssab-logo {
-    width: min(340px, 60vw);
-    filter: invert(1) brightness(1.6) sepia(0.3) hue-rotate(5deg) saturate(1.5);
-    opacity: 0.8;
+    width: min(520px, 80vw);
+    mix-blend-mode: screen;
+    filter: brightness(1.4) contrast(1.1);
+    opacity: 0.9;
     transition: opacity 0.3s;
   }
   .ssab-logo:hover { opacity: 1; }
@@ -621,7 +622,7 @@
   <div class="hero-content">
     <p class="hero-eyebrow">Queens, NYC &nbsp;·&nbsp; Dot Mobb &nbsp;·&nbsp; Official EPK</p>
     <img src="assets/starborn-logo.png" alt="$TARBORN" class="hero-logo" id="heroLogo">
-    <p class="hero-tagline">Some Stars Are Built Born</p>
+    <p class="hero-tagline">Some Stars Are Built. Some Stars Are Born.</p>
     <p class="hero-sub">Recording Artist &nbsp;·&nbsp; Battle Rapper &nbsp;·&nbsp; Producer &amp; Engineer</p>
     <div class="hero-ctas">
       <a href="#music" class="btn-primary">Stream Music</a>
