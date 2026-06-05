@@ -163,6 +163,11 @@
     opacity: 0.42;
     filter: grayscale(30%) contrast(1.15);
   }
+  /* iOS/mobile doesn't support background-attachment: fixed */
+  @media (max-width: 900px), (hover: none) {
+    .hero-bg-img { background-attachment: scroll; }
+  }
+  }
   .hero-bg-grad {
     position: absolute; inset: 0;
     background: linear-gradient(to bottom,
