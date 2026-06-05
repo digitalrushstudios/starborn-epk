@@ -347,6 +347,33 @@
   .reveal-delay-2 { transition-delay: 0.2s; }
   .reveal-delay-3 { transition-delay: 0.3s; }
 
+  /* ─── MARQUEE TICKER ────────────────────────────────────────── */
+  .ticker-wrap {
+    background: var(--gold); overflow: hidden; padding: 10px 0;
+    border-top: 1px solid rgba(201,168,76,0.4);
+    border-bottom: 1px solid rgba(201,168,76,0.4);
+  }
+  .ticker-track {
+    display: flex; white-space: nowrap;
+    animation: ticker 28s linear infinite;
+    width: max-content;
+  }
+  .ticker-wrap:hover .ticker-track { animation-play-state: paused; }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .ticker-item {
+    display: inline-flex; align-items: center; gap: 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem; letter-spacing: 0.18em;
+    color: var(--black); padding: 0 32px;
+  }
+  .ticker-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: rgba(0,0,0,0.4); flex-shrink: 0;
+  }
+
   /* ─── ABOUT ──────────────────────────────────────────────────── */
   #about { background: var(--black); }
   .about-grid {
@@ -827,6 +854,33 @@
     <div class="scroll-dot"></div>
   </div>
 </section>
+
+<!-- ═══ TICKER ════════════════════════════════════════════════════ -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item">$TARBORN<span class="ticker-dot"></span></span>
+    <span class="ticker-item">QUEENS NYC<span class="ticker-dot"></span></span>
+    <span class="ticker-item">DOT MOBB<span class="ticker-dot"></span></span>
+    <span class="ticker-item">$$AB<span class="ticker-dot"></span></span>
+    <span class="ticker-item">SOME STARS ARE BUILT<span class="ticker-dot"></span></span>
+    <span class="ticker-item">SOME STARS ARE BORN<span class="ticker-dot"></span></span>
+    <span class="ticker-item">BATTLE RAP<span class="ticker-dot"></span></span>
+    <span class="ticker-item">RECORDING ARTIST<span class="ticker-dot"></span></span>
+    <span class="ticker-item">PRODUCER &amp; ENGINEER<span class="ticker-dot"></span></span>
+    <span class="ticker-item">100% INDEPENDENT<span class="ticker-dot"></span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item">$TARBORN<span class="ticker-dot"></span></span>
+    <span class="ticker-item">QUEENS NYC<span class="ticker-dot"></span></span>
+    <span class="ticker-item">DOT MOBB<span class="ticker-dot"></span></span>
+    <span class="ticker-item">$$AB<span class="ticker-dot"></span></span>
+    <span class="ticker-item">SOME STARS ARE BUILT<span class="ticker-dot"></span></span>
+    <span class="ticker-item">SOME STARS ARE BORN<span class="ticker-dot"></span></span>
+    <span class="ticker-item">BATTLE RAP<span class="ticker-dot"></span></span>
+    <span class="ticker-item">RECORDING ARTIST<span class="ticker-dot"></span></span>
+    <span class="ticker-item">PRODUCER &amp; ENGINEER<span class="ticker-dot"></span></span>
+    <span class="ticker-item">100% INDEPENDENT<span class="ticker-dot"></span></span>
+  </div>
+</div>
 
 <div class="gold-rule"></div>
 
