@@ -338,13 +338,66 @@
     overflow: hidden;
   }
   .ssab-logo {
-    width: min(520px, 80vw);
-    mix-blend-mode: screen;
-    filter: brightness(1.4) contrast(1.1);
-    opacity: 0.9;
+    width: min(540px, 82vw);
+    opacity: 0.92;
     transition: opacity 0.3s;
   }
   .ssab-logo:hover { opacity: 1; }
+
+  /* ─── FEATURED VIDEOS ───────────────────────────────────────── */
+  #featured { background: var(--grey); }
+  .featured-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .featured-card {
+    position: relative; border-radius: 3px; overflow: hidden;
+    cursor: pointer;
+    border: 1px solid var(--gold);
+    transition: transform 0.35s var(--ease), box-shadow 0.35s;
+    box-shadow: 0 0 0 rgba(201,168,76,0);
+  }
+  .featured-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(201,168,76,0.18);
+  }
+  .featured-thumb {
+    width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block;
+    transition: transform 0.45s var(--ease), filter 0.3s;
+  }
+  .featured-card:hover .featured-thumb {
+    transform: scale(1.05); filter: brightness(0.55);
+  }
+  .featured-overlay {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    justify-content: flex-end; padding: 24px;
+    background: linear-gradient(to top, rgba(7,7,7,0.95) 0%, rgba(7,7,7,0.3) 50%, transparent 100%);
+  }
+  .featured-badge {
+    display: inline-block; margin-bottom: 10px;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    background: var(--gold); color: var(--black);
+    padding: 4px 10px; border-radius: 1px; width: fit-content;
+  }
+  .featured-play {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--gold); display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.3s; pointer-events: none;
+  }
+  .featured-card:hover .featured-play { opacity: 1; }
+  .featured-play svg { width: 24px; height: 24px; fill: var(--black); margin-left: 3px; }
+  .featured-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.4rem, 2.5vw, 2rem); letter-spacing: 0.04em;
+    color: var(--white); line-height: 1.1; margin-bottom: 6px;
+  }
+  .featured-sub { font-size: 0.8rem; color: #aaa; letter-spacing: 0.06em; }
+  @media (max-width: 640px) {
+    .featured-grid { grid-template-columns: 1fr; }
+  }
 
   /* ─── MUSIC ──────────────────────────────────────────────────── */
   #music { background: var(--black); }
@@ -639,7 +692,7 @@
 
 <!-- ═══ SSAB BAR ═════════════════════════════════════════════════ -->
 <div class="ssab-bar reveal">
-  <img src="assets/ssab-logo.png" alt="$$AB — Some Stars Are Built Born" class="ssab-logo">
+  <img src="assets/ssab-logo-white.png" alt="$$AB — Some Stars Are Built Born" class="ssab-logo">
 </div>
 
 <div class="gold-rule"></div>
@@ -702,6 +755,42 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- ═══ FEATURED VIDEOS ══════════════════════════════════════════ -->
+<section id="featured">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Must Watch</div>
+      <h2 class="section-title">Featured Videos</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="featured-grid">
+
+      <div class="featured-card reveal" data-vid="c5I-t_fZs60">
+        <img class="featured-thumb" src="https://img.youtube.com/vi/c5I-t_fZs60/maxresdefault.jpg" alt="Honor Roll" loading="lazy">
+        <div class="featured-overlay">
+          <div class="featured-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <span class="featured-badge">Music Video</span>
+          <div class="featured-title">Honor Roll</div>
+          <div class="featured-sub">$tarborn x Gav Sinatra</div>
+        </div>
+      </div>
+
+      <div class="featured-card reveal reveal-delay-2" data-vid="5sY3bc2qRSg">
+        <img class="featured-thumb" src="https://img.youtube.com/vi/5sY3bc2qRSg/maxresdefault.jpg" alt="$tarborn vs Celly Makaveli" loading="lazy">
+        <div class="featured-overlay">
+          <div class="featured-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <span class="featured-badge">Battle Rap</span>
+          <div class="featured-title">$tarborn vs. Celly Makaveli</div>
+          <div class="featured-sub">Acapella Battle</div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
