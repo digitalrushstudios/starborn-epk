@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Intake — Digital Rush Studios</title>
+<meta name="description" content="Start your creative project with Digital Rush Studios. Logo design, brand identity, album artwork, merch, web design, flyers, and more.">
+<meta property="og:title" content="Client Intake — Digital Rush Studios">
+<meta property="og:description" content="Work with Digital Rush Studios on your next creative project. Submit your project brief and let's build something iconic.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET & BASE ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black:    #030303;
+  --card-bg:  #0d0d0d;
+  --card-bd:  #1c1c1c;
+  --gold:     #C9A84C;
+  --gold-lt:  #e8c96a;
+  --gold-dim: rgba(201,168,76,0.12);
+  --gold-glow:rgba(201,168,76,0.25);
+  --white:    #f0f0f0;
+  --muted:    #666;
+  --dim:      #333;
+  --green:    #22c55e;
+  --red:      #ef4444;
+  --ease:     cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --radius:   8px;
+}
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { font-family: inherit; cursor: pointer; }
+input, textarea, select { font-family: inherit; }
+::selection { background: var(--gold); color: var(--black); }
+
+/* ─── SCROLLBAR ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+/* ─── NOISE + CURSOR GLOW ────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.35;
+}
+#cursorGlow {
+  position: fixed;
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: none;
+}
+
+/* ─── NAV ─────────────────────────────────────────────────────── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px;
+  transition: background 0.4s var(--ease), border-color 0.4s;
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled {
+  background: rgba(3,3,3,0.94);
+  backdrop-filter: blur(20px);
+  border-bottom-color: var(--card-bd);
+}
+.nav-brand {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: 1rem;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--gold);
+}
+.nav-brand span { color: var(--white); }
+.nav-back {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.nav-back svg { width: 14px; height: 14px; }
+.nav-back:hover { color: var(--gold); }
+
+/* ─── BACKGROUND MESH ─────────────────────────────────────────── */
+.bg-mesh {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  overflow: hidden;
+}
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.06;
+  animation: orbFloat 20s ease-in-out infinite;
+}
+.bg-orb-1 {
+  width: 600px; height: 600px;
+  background: var(--gold);
+  top: -200px; left: -200px;
+  animation-duration: 25s;
+}
+.bg-orb-2 {
+  width: 400px; height: 400px;
+  background: var(--gold);
+  bottom: 10%; right: -100px;
+  animation-duration: 18s;
+  animation-delay: -8s;
+}
+.bg-orb-3 {
+  width: 300px; height: 300px;
+  background: #ffffff;
+  top: 50%; left: 50%;
+  animation-duration: 30s;
+  animation-delay: -15s;
+  opacity: 0.02;
+}
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  33%       { transform: translate(60px,-40px) scale(1.1); }
+  66%       { transform: translate(-40px, 60px) scale(0.9); }
+}
+
+/* ─── HERO ────────────────────────────────────────────────────── */
+.hero {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 120px 24px 80px;
+  overflow: hidden;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gold-dim);
+  border: 1px solid rgba(201,168,76,0.3);
+  color: var(--gold);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 6px 16px; border-radius: 100px;
+  margin-bottom: 32px;
+  opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.2s forwards;
+}
+.hero-badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(3rem, 9vw, 7.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  opacity: 0; animation: fadeUp 0.9s var(--ease-out) 0.4s forwards;
+}
+.hero-title .line { display: block; overflow: hidden; }
+.hero-title .gold { color: var(--gold); }
+.hero-sub {
+  max-width: 520px;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 48px;
+  opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.6s forwards;
+}
+.hero-cta-row {
+  display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+  opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.8s forwards;
+}
+.btn-gold {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--gold); color: var(--black);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 16px 36px; border: none; border-radius: var(--radius);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  position: relative; overflow: hidden;
+}
+.btn-gold::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%);
+  opacity: 0; transition: opacity 0.2s;
+}
+.btn-gold:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.35); }
+.btn-gold:hover::before { opacity: 1; }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: transparent; color: var(--white);
+  font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 15px 32px; border: 1px solid var(--dim); border-radius: var(--radius);
+  transition: border-color 0.2s, color 0.2s, transform 0.2s;
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+.hero-stats {
+  display: flex; gap: 48px; justify-content: center; flex-wrap: wrap;
+  margin-top: 80px;
+  opacity: 0; animation: fadeUp 0.8s var(--ease-out) 1s forwards;
+  border-top: 1px solid var(--card-bd);
+  padding-top: 48px;
+  width: 100%; max-width: 600px;
+}
+.hero-stat { text-align: center; }
+.hero-stat-num {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: 2.4rem;
+  color: var(--gold); line-height: 1;
+  display: block; margin-bottom: 4px;
+}
+.hero-stat-label {
+  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted);
+}
+.scroll-hint {
+  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  opacity: 0; animation: fadeIn 1s 1.5s forwards;
+}
+.scroll-hint span {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); font-family: 'Space Mono', monospace;
+}
+.scroll-line {
+  width: 1px; height: 48px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1) translateY(0); }
+  50% { opacity: 1; transform: scaleY(0.5) translateY(12px); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn { to { opacity: 1; } }
+
+/* ─── SERVICES STRIP ──────────────────────────────────────────── */
+.services-strip {
+  position: relative; z-index: 1;
+  background: var(--card-bg);
+  border-top: 1px solid var(--card-bd);
+  border-bottom: 1px solid var(--card-bd);
+  padding: 64px 40px;
+}
+.services-inner { max-width: 1200px; margin: 0 auto; }
+.services-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 40px; text-align: center;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+.service-item {
+  background: var(--black);
+  border: 1px solid var(--card-bd);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: border-color 0.3s, transform 0.3s var(--ease), box-shadow 0.3s;
+  cursor: default;
+}
+.service-item:hover {
+  border-color: rgba(201,168,76,0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 24px var(--gold-dim);
+}
+.service-icon {
+  width: 40px; height: 40px;
+  background: var(--gold-dim);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 14px;
+  font-size: 1.2rem;
+}
+.service-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 0.9rem;
+  letter-spacing: 0.02em; color: var(--white);
+  margin-bottom: 4px;
+}
+.service-desc {
+  font-size: 0.78rem; color: var(--muted); line-height: 1.5;
+}
+
+/* ─── FORM SECTION ────────────────────────────────────────────── */
+#intake-form {
+  position: relative; z-index: 1;
+  padding: 100px 24px;
+}
+.form-container {
+  max-width: 760px; margin: 0 auto;
+}
+.form-header { text-align: center; margin-bottom: 64px; }
+.form-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 16px;
+}
+.form-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 0.96;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.form-subtitle {
+  font-size: 1rem; color: var(--muted); max-width: 480px; margin: 0 auto;
+}
+
+/* Progress bar */
+.progress-wrap {
+  display: flex; align-items: center; gap: 0;
+  margin-bottom: 48px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-bd);
+  border-radius: 100px;
+  padding: 6px;
+  position: relative;
+}
+.progress-step {
+  flex: 1;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 10px 8px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.3s;
+  position: relative; z-index: 1;
+}
+.progress-step.active   { background: var(--gold); }
+.progress-step.done     { background: rgba(201,168,76,0.12); }
+.progress-step.active .ps-num  { color: var(--black); }
+.progress-step.active .ps-label { color: var(--black); }
+.progress-step.done .ps-num   { color: var(--gold); }
+.progress-step.done .ps-label { color: var(--gold); }
+.ps-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem; font-weight: 700;
+  color: var(--muted);
+  transition: color 0.3s;
+}
+.ps-label {
+  font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted); white-space: nowrap;
+  transition: color 0.3s;
+  display: none;
+}
+@media (min-width: 540px) { .ps-label { display: block; } }
+
+/* Step card */
+.step-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-bd);
+  border-radius: 16px;
+  padding: 40px;
+  display: none;
+  animation: stepIn 0.4s var(--ease-out);
+}
+.step-card.active { display: block; }
+@keyframes stepIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.step-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 1.5rem;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+.step-sub {
+  font-size: 0.9rem; color: var(--muted); margin-bottom: 32px;
+}
+
+/* Form fields */
+.field-group { display: grid; gap: 20px; }
+.field-group.two-col { grid-template-columns: 1fr 1fr; }
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field label {
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--muted);
+}
+.field label .req { color: var(--gold); margin-left: 2px; }
+.field-input {
+  background: var(--black);
+  border: 1px solid var(--card-bd);
+  border-radius: var(--radius);
+  color: var(--white);
+  font-size: 0.95rem; font-weight: 500;
+  padding: 14px 16px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+.field-input::placeholder { color: var(--muted); }
+.field-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-dim);
+}
+.field-input.error { border-color: var(--red); box-shadow: 0 0 0 3px rgba(239,68,68,0.12); }
+.field-input.valid { border-color: var(--green); }
+textarea.field-input { resize: vertical; min-height: 120px; }
+select.field-input { appearance: none; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+  padding-right: 40px;
+}
+.field-hint { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+.field-error { font-size: 0.75rem; color: var(--red); margin-top: 2px; display: none; }
+
+/* Service checkboxes */
+.service-checks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.service-check {
+  position: relative;
+}
+.service-check input[type="checkbox"] {
+  position: absolute; opacity: 0; width: 0; height: 0;
+}
+.service-check label {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
+  background: var(--black);
+  border: 1px solid var(--card-bd);
+  border-radius: var(--radius);
+  padding: 16px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  user-select: none;
+  font-size: 0.82rem; font-weight: 500;
+  color: var(--muted);
+  text-transform: none; letter-spacing: 0;
+  min-height: 80px;
+}
+.service-check label .svc-icon { font-size: 1.4rem; }
+.service-check label .svc-name { color: var(--white); font-size: 0.82rem; font-weight: 600; letter-spacing: 0; text-transform: none; }
+.service-check input:checked + label {
+  border-color: var(--gold);
+  background: var(--gold-dim);
+  transform: scale(1.02);
+}
+.service-check input:checked + label .svc-name { color: var(--gold); }
+.service-check label:hover { border-color: rgba(201,168,76,0.3); }
+
+/* Budget / timeline select pills */
+.select-pills {
+  display: flex; flex-wrap: wrap; gap: 10px;
+}
+.select-pill {
+  position: relative;
+}
+.select-pill input[type="radio"] {
+  position: absolute; opacity: 0; width: 0; height: 0;
+}
+.select-pill label {
+  display: inline-flex; align-items: center;
+  background: var(--black);
+  border: 1px solid var(--card-bd);
+  border-radius: 100px;
+  padding: 10px 20px;
+  font-size: 0.82rem; font-weight: 500;
+  color: var(--muted);
+  cursor: pointer; white-space: nowrap;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  text-transform: none; letter-spacing: 0;
+}
+.select-pill input:checked + label {
+  border-color: var(--gold);
+  background: var(--gold-dim);
+  color: var(--gold);
+}
+.select-pill label:hover { border-color: rgba(201,168,76,0.3); color: var(--white); }
+
+/* Rating / source */
+.radio-stack { display: flex; flex-direction: column; gap: 10px; }
+.radio-row {
+  position: relative;
+}
+.radio-row input[type="radio"] {
+  position: absolute; opacity: 0; width: 0; height: 0;
+}
+.radio-row label {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--black);
+  border: 1px solid var(--card-bd);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  font-size: 0.88rem; font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  text-transform: none; letter-spacing: 0;
+}
+.radio-row label::before {
+  content: '';
+  width: 16px; height: 16px;
+  border: 2px solid var(--card-bd);
+  border-radius: 50%; flex-shrink: 0;
+  transition: border-color 0.2s, background 0.2s;
+}
+.radio-row input:checked + label {
+  border-color: var(--gold);
+  background: var(--gold-dim);
+  color: var(--white);
+}
+.radio-row input:checked + label::before {
+  border-color: var(--gold);
+  background: var(--gold);
+}
+
+/* Step nav buttons */
+.step-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 32px; gap: 16px;
+}
+.step-nav-back {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; border: 1px solid var(--card-bd);
+  color: var(--muted); border-radius: var(--radius);
+  font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 14px 24px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.step-nav-back:hover { border-color: var(--muted); color: var(--white); }
+.step-nav-next {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--gold); color: var(--black);
+  border: none; border-radius: var(--radius);
+  font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 14px 32px;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  margin-left: auto;
+}
+.step-nav-next:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,168,76,0.3); }
+.step-nav-next svg, .step-nav-back svg { width: 16px; height: 16px; }
+.step-nav-next:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* Review summary */
+.review-section { margin-bottom: 24px; }
+.review-section-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 12px;
+  padding-bottom: 8px; border-bottom: 1px solid var(--card-bd);
+}
+.review-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+.review-item { display: flex; flex-direction: column; gap: 2px; }
+.review-item-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.review-item-value { font-size: 0.9rem; font-weight: 500; color: var(--white); }
+.review-item-value.empty { color: var(--muted); font-style: italic; }
+
+/* Submit button + success */
+.submit-btn {
+  width: 100%;
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  background: var(--gold); color: var(--black);
+  border: none; border-radius: var(--radius);
+  font-size: 1rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 18px 32px; margin-top: 24px;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  position: relative; overflow: hidden;
+}
+.submit-btn::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+  opacity: 0; transition: opacity 0.2s;
+}
+.submit-btn:hover:not(:disabled) { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.35); }
+.submit-btn:hover:not(:disabled)::after { opacity: 1; }
+.submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
+.submit-btn .spinner {
+  width: 18px; height: 18px;
+  border: 2px solid rgba(0,0,0,0.3); border-top-color: var(--black);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  display: none;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Success state */
+.success-state {
+  text-align: center; padding: 60px 20px;
+  display: none;
+}
+.success-state.visible { display: block; animation: fadeUp 0.6s var(--ease-out); }
+.success-icon {
+  width: 80px; height: 80px;
+  background: var(--gold-dim); border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 32px;
+  font-size: 2rem;
+  animation: successPop 0.5s var(--ease-out) 0.2s both;
+}
+@keyframes successPop {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+.success-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: clamp(1.8rem, 5vw, 3rem);
+  letter-spacing: -0.02em; margin-bottom: 16px;
+}
+.success-sub {
+  font-size: 1rem; color: var(--muted); max-width: 420px; margin: 0 auto 40px;
+  line-height: 1.7;
+}
+.success-details {
+  display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+  margin-bottom: 40px;
+}
+.success-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--card-bg); border: 1px solid var(--card-bd);
+  border-radius: 100px; padding: 8px 18px;
+  font-size: 0.8rem; color: var(--muted);
+}
+.success-chip span { color: var(--gold); }
+
+/* ─── HOW IT WORKS ────────────────────────────────────────────── */
+.how-section {
+  position: relative; z-index: 1;
+  background: var(--card-bg);
+  border-top: 1px solid var(--card-bd);
+  padding: 80px 40px;
+}
+.how-inner { max-width: 900px; margin: 0 auto; }
+.how-header { text-align: center; margin-bottom: 56px; }
+.how-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 16px;
+}
+.how-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.02em;
+}
+.how-steps {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 32px;
+}
+.how-step {
+  position: relative;
+}
+.how-step-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 3rem; font-weight: 700;
+  color: var(--card-bd);
+  line-height: 1; margin-bottom: 16px;
+  transition: color 0.3s;
+}
+.how-step:hover .how-step-num { color: var(--gold-dim); }
+.how-step-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+.how-step-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+/* ─── FOOTER ──────────────────────────────────────────────────── */
+footer {
+  position: relative; z-index: 1;
+  background: var(--black);
+  border-top: 1px solid var(--card-bd);
+  padding: 48px 40px 32px;
+  text-align: center;
+}
+.footer-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: 1.4rem;
+  letter-spacing: 0.04em; color: var(--gold);
+  margin-bottom: 8px;
+}
+.footer-logo span { color: var(--white); }
+.footer-tagline {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 24px;
+}
+.footer-links {
+  display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.footer-link {
+  font-size: 0.8rem; color: var(--muted); letter-spacing: 0.06em;
+  transition: color 0.2s;
+}
+.footer-link:hover { color: var(--gold); }
+.footer-copy {
+  font-size: 0.75rem; color: var(--dim);
+}
+
+/* ─── REVEAL ANIMATION ────────────────────────────────────────── */
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+
+/* ─── HONEYPOT ─────────────────────────────────────────────────── */
+.bot-field { display: none !important; }
+
+/* ─── RESPONSIVE ──────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .nav { padding: 0 20px; }
+  .hero { padding: 100px 20px 60px; }
+  .hero-stats { gap: 28px; }
+  .services-strip { padding: 48px 20px; }
+  #intake-form { padding: 64px 16px; }
+  .step-card { padding: 24px 20px; }
+  .field-group.two-col { grid-template-columns: 1fr; }
+  .review-grid { grid-template-columns: 1fr; }
+  .how-section { padding: 60px 20px; }
+  footer { padding: 40px 20px 24px; }
+  .progress-wrap { padding: 4px; gap: 0; }
+  .progress-step { padding: 8px 4px; }
+}
+@media (max-width: 440px) {
+  .service-checks { grid-template-columns: repeat(2, 1fr); }
+  .hero-title { font-size: clamp(2.6rem, 14vw, 4rem); }
+}
+</style>
+</head>
+<body>
+
+<!-- Cursor glow -->
+<div id="cursorGlow"></div>
+
+<!-- Background mesh -->
+<div class="bg-mesh">
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="bg-orb bg-orb-3"></div>
+</div>
+
+<!-- ══ NAV ═════════════════════════════════════════════════════ -->
+<nav class="nav" id="mainNav">
+  <a href="/" class="nav-brand">Digital Rush <span>Studios</span></a>
+  <a href="index.html" class="nav-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Back to EPK
+  </a>
+</nav>
+
+<!-- ══ HERO ════════════════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    Now Accepting New Clients
+  </div>
+  <h1 class="hero-title">
+    <span class="line">Let's Build</span>
+    <span class="line gold">Something</span>
+    <span class="line">Iconic.</span>
+  </h1>
+  <p class="hero-sub">
+    Digital Rush Studios creates premium visual identities, album art, merch, flyers, web experiences, and more — for artists, brands, and visionaries.
+  </p>
+  <div class="hero-cta-row">
+    <a href="#intake-form" class="btn-gold">
+      Start Your Project
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="index.html" class="btn-ghost">View Our Work</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-num" data-count="50" data-suffix="+">0</span>
+      <span class="hero-stat-label">Projects Delivered</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num" data-count="100" data-suffix="%">0</span>
+      <span class="hero-stat-label">Client Satisfaction</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num" data-count="5" data-suffix="">0</span>
+      <span class="hero-stat-label">Years in the Game</span>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ══ SERVICES ════════════════════════════════════════════════ -->
+<section class="services-strip">
+  <div class="services-inner">
+    <div class="services-label reveal">What We Create</div>
+    <div class="services-grid">
+      <div class="service-item reveal reveal-d1">
+        <div class="service-icon">🎨</div>
+        <div class="service-name">Logo Design</div>
+        <div class="service-desc">Timeless marks built around your identity</div>
+      </div>
+      <div class="service-item reveal reveal-d2">
+        <div class="service-icon">💎</div>
+        <div class="service-name">Brand Identity</div>
+        <div class="service-desc">Full brand kits: colors, fonts, guidelines</div>
+      </div>
+      <div class="service-item reveal reveal-d1">
+        <div class="service-icon">🎵</div>
+        <div class="service-name">Album Artwork</div>
+        <div class="service-desc">Album, EP, and single cover art that hits</div>
+      </div>
+      <div class="service-item reveal reveal-d2">
+        <div class="service-icon">👕</div>
+        <div class="service-name">Merch Design</div>
+        <div class="service-desc">Apparel, accessories, and merchandise graphics</div>
+      </div>
+      <div class="service-item reveal reveal-d1">
+        <div class="service-icon">📱</div>
+        <div class="service-name">Social Media</div>
+        <div class="service-desc">Posts, stories, banners, and templates</div>
+      </div>
+      <div class="service-item reveal reveal-d2">
+        <div class="service-icon">🌐</div>
+        <div class="service-name">Web Design</div>
+        <div class="service-desc">Custom sites, EPKs, and landing pages</div>
+      </div>
+      <div class="service-item reveal reveal-d1">
+        <div class="service-icon">🎪</div>
+        <div class="service-name">Flyer Design</div>
+        <div class="service-desc">Event posters, promo flyers, show graphics</div>
+      </div>
+      <div class="service-item reveal reveal-d2">
+        <div class="service-icon">🎬</div>
+        <div class="service-name">Video Editing</div>
+        <div class="service-desc">Motion graphics, visualizers, reels, intros</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INTAKE FORM ═════════════════════════════════════════════ -->
+<section id="intake-form">
+  <div class="form-container">
+    <div class="form-header reveal">
+      <div class="form-eyebrow">Client Intake</div>
+      <h2 class="form-title">Start Your Project</h2>
+      <p class="form-subtitle">Fill out the brief below and we'll get back to you within 24–48 hours.</p>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="progress-wrap reveal" id="progressWrap">
+      <div class="progress-step active" data-step="1">
+        <span class="ps-num">01</span>
+        <span class="ps-label">Contact</span>
+      </div>
+      <div class="progress-step" data-step="2">
+        <span class="ps-num">02</span>
+        <span class="ps-label">Services</span>
+      </div>
+      <div class="progress-step" data-step="3">
+        <span class="ps-num">03</span>
+        <span class="ps-label">Details</span>
+      </div>
+      <div class="progress-step" data-step="4">
+        <span class="ps-num">04</span>
+        <span class="ps-label">Timeline</span>
+      </div>
+      <div class="progress-step" data-step="5">
+        <span class="ps-num">05</span>
+        <span class="ps-label">Review</span>
+      </div>
+    </div>
+
+    <!-- NETLIFY FORM (handles form submissions automatically on Netlify) -->
+    <form
+      name="client-intake"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      id="intakeForm"
+      novalidate
+    >
+      <!-- Required hidden fields for Netlify -->
+      <input type="hidden" name="form-name" value="client-intake">
+      <!-- Honeypot anti-spam -->
+      <p class="bot-field">
+        <label>Don't fill this out: <input name="bot-field"></label>
+      </p>
+
+      <!-- ── STEP 1: Contact Info ── -->
+      <div class="step-card active" id="step1">
+        <div class="step-title">About You</div>
+        <div class="step-sub">Tell us who you are so we can reach you.</div>
+        <div class="field-group">
+          <div class="field-group two-col">
+            <div class="field">
+              <label for="firstName">First Name <span class="req">*</span></label>
+              <input type="text" id="firstName" name="firstName" class="field-input" placeholder="Shawn" autocomplete="given-name" required>
+              <span class="field-error" id="firstNameErr">Please enter your first name.</span>
+            </div>
+            <div class="field">
+              <label for="lastName">Last Name <span class="req">*</span></label>
+              <input type="text" id="lastName" name="lastName" class="field-input" placeholder="Xavier" autocomplete="family-name" required>
+              <span class="field-error" id="lastNameErr">Please enter your last name.</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="email">Email Address <span class="req">*</span></label>
+            <input type="email" id="email" name="email" class="field-input" placeholder="you@example.com" autocomplete="email" required>
+            <span class="field-error" id="emailErr">Please enter a valid email address.</span>
+          </div>
+          <div class="field">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" class="field-input" placeholder="+1 (555) 000-0000" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="instagram">Instagram / Social Handle</label>
+            <input type="text" id="instagram" name="instagram" class="field-input" placeholder="@yourhandle">
+          </div>
+          <div class="field">
+            <label for="brandName">Artist / Brand Name</label>
+            <input type="text" id="brandName" name="brandName" class="field-input" placeholder="$TARBORN, Brick Baby, etc.">
+          </div>
+        </div>
+        <div class="step-nav">
+          <button type="button" class="step-nav-next" data-next="2">
+            Next: Services
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ── STEP 2: Services ── -->
+      <div class="step-card" id="step2">
+        <div class="step-title">What Do You Need?</div>
+        <div class="step-sub">Select all services that apply to your project.</div>
+        <div class="field-group">
+          <div class="field">
+            <label>Services Needed <span class="req">*</span></label>
+            <div class="service-checks" id="serviceChecks">
+              <div class="service-check">
+                <input type="checkbox" id="svc-logo" name="services[]" value="Logo Design">
+                <label for="svc-logo"><span class="svc-icon">🎨</span><span class="svc-name">Logo Design</span></label>
+              </div>
+              <div class="service-check">
+                <input type="checkbox" id="svc-brand" name="services[]" value="Brand Identity">
+                <label for="svc-brand"><span class="svc-icon">💎</span><span class="svc-name">Brand Identity</span></label>
+              </div>
+              <div class="service-check">
+                <input type="checkbox" id="svc-album" name="services[]" value="Album / EP Artwork">
+                <label for="svc-album"><span class="svc-icon">💿</span><span class="svc-name">Album / EP Art</span></label>
+              </div>
+              <div class="service-check">
+                <input type="checkbox" id="svc-single" name="services[]" value="Single Cover Art">
+                <label for="svc-single"><span class="svc-icon">🎵</span><span class="svc-name">Single Cover</span></label>
+              </div>
+              <div class="service-check">
+                <input type="checkbox" id="svc-merch" name="services[]" value="Merch Design">
+                <label for="svc-merch"><span class="svc-icon">👕</span><span class="svc-name">Merch Design</span></label>
+              </div>
+              <div class="service-check">
+                <input type="checkbox" id="svc-flyer" name="services[]" value="Flyer / Event Poster">
+                <label for="svc-flyer"><span class="svc-icon">🎪</span><span class="svc-name">Flyer / Poster</span></label>
+              </div>
+              <div class="service-check">
+                <input type="checkbox" id="svc-social" name="services[]" value="Social Media Graphics">
+                <label for="svc-social"><span class="svc-icon">📱</span><span class="svc-name">Social Media</span></label>
+              </div>
+              <div class="service-check">
+                <input type="checkbox" id="svc-web" name="services[]" value="Web Design">
+                <label for="svc-web"><span class="svc-icon">🌐</span><span class="svc-name">Web Design</span></label>
+              </div>
+              <div class="service-check">
+                <input type="checkbox" id="svc-video" name="services[]" value="Video Editing / Motion">
+                <label for="svc-video"><span class="svc-icon">🎬</span><span class="svc-name">Video / Motion</span></label>
+              </div>
+              <div class="service-check">
+                <input type="checkbox" id="svc-podcast" name="services[]" value="Podcast Cover Art">
+                <label for="svc-podcast"><span class="svc-icon">🎙️</span><span class="svc-name">Podcast Cover</span></label>
+              </div>
+              <div class="service-check">
+                <input type="checkbox" id="svc-print" name="services[]" value="Print / Business Cards">
+                <label for="svc-print"><span class="svc-icon">🖨️</span><span class="svc-name">Print / Cards</span></label>
+              </div>
+              <div class="service-check">
+                <input type="checkbox" id="svc-other" name="services[]" value="Other">
+                <label for="svc-other"><span class="svc-icon">✨</span><span class="svc-name">Other</span></label>
+              </div>
+            </div>
+            <span class="field-error" id="servicesErr">Please select at least one service.</span>
+          </div>
+        </div>
+        <div class="step-nav">
+          <button type="button" class="step-nav-back" data-back="1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            Back
+          </button>
+          <button type="button" class="step-nav-next" data-next="3">
+            Next: Project Details
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ── STEP 3: Project Details ── -->
+      <div class="step-card" id="step3">
+        <div class="step-title">Project Details</div>
+        <div class="step-sub">Give us the vision. The more detail, the better.</div>
+        <div class="field-group">
+          <div class="field">
+            <label for="projectName">Project Name / Title</label>
+            <input type="text" id="projectName" name="projectName" class="field-input" placeholder="e.g. Emotional Rollercoaster Album, Summer Tour Flyer…">
+          </div>
+          <div class="field">
+            <label for="projectDesc">Project Description <span class="req">*</span></label>
+            <textarea id="projectDesc" name="projectDesc" class="field-input" placeholder="Describe your project in detail. What's the concept, vibe, feel? What do you want people to feel when they see it?" required></textarea>
+            <span class="field-error" id="projectDescErr">Please describe your project.</span>
+          </div>
+          <div class="field">
+            <label for="inspiration">Inspiration / References</label>
+            <textarea id="inspiration" name="inspiration" class="field-input" placeholder="Share links, artist names, styles, color palettes, or any visual references that inspire you…" style="min-height:90px"></textarea>
+            <div class="field-hint">URLs, Instagram handles, names — anything helps.</div>
+          </div>
+          <div class="field">
+            <label for="colorPrefs">Color Preferences</label>
+            <input type="text" id="colorPrefs" name="colorPrefs" class="field-input" placeholder="e.g. gold, black, and white — or 'dark and moody'">
+          </div>
+          <div class="field">
+            <label for="existingAssets">Existing Assets / Files</label>
+            <input type="text" id="existingAssets" name="existingAssets" class="field-input" placeholder="Do you have a logo, fonts, or brand colors already? Describe them here.">
+            <div class="field-hint">You can share files after we connect via email.</div>
+          </div>
+        </div>
+        <div class="step-nav">
+          <button type="button" class="step-nav-back" data-back="2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            Back
+          </button>
+          <button type="button" class="step-nav-next" data-next="4">
+            Next: Timeline & Budget
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ── STEP 4: Timeline & Budget ── -->
+      <div class="step-card" id="step4">
+        <div class="step-title">Timeline &amp; Budget</div>
+        <div class="step-sub">Help us plan the right approach for your project.</div>
+        <div class="field-group">
+          <div class="field">
+            <label>Project Timeline <span class="req">*</span></label>
+            <div class="select-pills" id="timelinePills">
+              <div class="select-pill">
+                <input type="radio" id="tl-asap" name="timeline" value="ASAP (Rush)">
+                <label for="tl-asap">⚡ ASAP</label>
+              </div>
+              <div class="select-pill">
+                <input type="radio" id="tl-1w" name="timeline" value="1–2 Weeks">
+                <label for="tl-1w">1–2 Weeks</label>
+              </div>
+              <div class="select-pill">
+                <input type="radio" id="tl-1m" name="timeline" value="2–4 Weeks">
+                <label for="tl-1m">2–4 Weeks</label>
+              </div>
+              <div class="select-pill">
+                <input type="radio" id="tl-2m" name="timeline" value="1–2 Months">
+                <label for="tl-2m">1–2 Months</label>
+              </div>
+              <div class="select-pill">
+                <input type="radio" id="tl-flex" name="timeline" value="Flexible">
+                <label for="tl-flex">Flexible</label>
+              </div>
+            </div>
+            <span class="field-error" id="timelineErr">Please select a timeline.</span>
+          </div>
+          <div class="field">
+            <label>Budget Range <span class="req">*</span></label>
+            <div class="select-pills" id="budgetPills">
+              <div class="select-pill">
+                <input type="radio" id="bud-50" name="budget" value="Under $100">
+                <label for="bud-50">Under $100</label>
+              </div>
+              <div class="select-pill">
+                <input type="radio" id="bud-100" name="budget" value="$100–$250">
+                <label for="bud-100">$100–$250</label>
+              </div>
+              <div class="select-pill">
+                <input type="radio" id="bud-250" name="budget" value="$250–$500">
+                <label for="bud-250">$250–$500</label>
+              </div>
+              <div class="select-pill">
+                <input type="radio" id="bud-500" name="budget" value="$500–$1,000">
+                <label for="bud-500">$500–$1,000</label>
+              </div>
+              <div class="select-pill">
+                <input type="radio" id="bud-1k" name="budget" value="$1,000+">
+                <label for="bud-1k">$1,000+</label>
+              </div>
+              <div class="select-pill">
+                <input type="radio" id="bud-tbd" name="budget" value="Let's Discuss">
+                <label for="bud-tbd">Let's Discuss</label>
+              </div>
+            </div>
+            <span class="field-error" id="budgetErr">Please select a budget range.</span>
+          </div>
+          <div class="field">
+            <label>How Did You Hear About Us?</label>
+            <div class="radio-stack">
+              <div class="radio-row">
+                <input type="radio" id="src-ig" name="source" value="Instagram">
+                <label for="src-ig">Instagram</label>
+              </div>
+              <div class="radio-row">
+                <input type="radio" id="src-ref" name="source" value="Referral / Word of Mouth">
+                <label for="src-ref">Referral / Word of Mouth</label>
+              </div>
+              <div class="radio-row">
+                <input type="radio" id="src-epk" name="source" value="$TARBORN EPK / Website">
+                <label for="src-epk">$TARBORN EPK / Website</label>
+              </div>
+              <div class="radio-row">
+                <input type="radio" id="src-search" name="source" value="Google / Search">
+                <label for="src-search">Google / Search</label>
+              </div>
+              <div class="radio-row">
+                <input type="radio" id="src-other" name="source" value="Other">
+                <label for="src-other">Other</label>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="addNotes">Additional Notes</label>
+            <textarea id="addNotes" name="addNotes" class="field-input" placeholder="Anything else you want us to know before we connect?" style="min-height:80px"></textarea>
+          </div>
+        </div>
+        <div class="step-nav">
+          <button type="button" class="step-nav-back" data-back="3">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            Back
+          </button>
+          <button type="button" class="step-nav-next" data-next="5">
+            Review & Submit
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ── STEP 5: Review ── -->
+      <div class="step-card" id="step5">
+        <div class="step-title">Review &amp; Submit</div>
+        <div class="step-sub">Double-check your info before sending it over.</div>
+
+        <div class="review-section">
+          <div class="review-section-title">Contact Info</div>
+          <div class="review-grid">
+            <div class="review-item">
+              <span class="review-item-label">Name</span>
+              <span class="review-item-value" id="rv-name">—</span>
+            </div>
+            <div class="review-item">
+              <span class="review-item-label">Email</span>
+              <span class="review-item-value" id="rv-email">—</span>
+            </div>
+            <div class="review-item">
+              <span class="review-item-label">Phone</span>
+              <span class="review-item-value" id="rv-phone">—</span>
+            </div>
+            <div class="review-item">
+              <span class="review-item-label">Brand / Artist</span>
+              <span class="review-item-value" id="rv-brand">—</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-section">
+          <div class="review-section-title">Services</div>
+          <div class="review-item">
+            <span class="review-item-label">Selected</span>
+            <span class="review-item-value" id="rv-services">—</span>
+          </div>
+        </div>
+
+        <div class="review-section">
+          <div class="review-section-title">Project</div>
+          <div class="review-grid">
+            <div class="review-item">
+              <span class="review-item-label">Project Name</span>
+              <span class="review-item-value" id="rv-project">—</span>
+            </div>
+            <div class="review-item">
+              <span class="review-item-label">Colors</span>
+              <span class="review-item-value" id="rv-colors">—</span>
+            </div>
+          </div>
+          <div class="review-item" style="margin-top:10px">
+            <span class="review-item-label">Description</span>
+            <span class="review-item-value" id="rv-desc">—</span>
+          </div>
+        </div>
+
+        <div class="review-section">
+          <div class="review-section-title">Timeline &amp; Budget</div>
+          <div class="review-grid">
+            <div class="review-item">
+              <span class="review-item-label">Timeline</span>
+              <span class="review-item-value" id="rv-timeline">—</span>
+            </div>
+            <div class="review-item">
+              <span class="review-item-label">Budget</span>
+              <span class="review-item-value" id="rv-budget">—</span>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <span id="submitText">Submit Project Brief</span>
+          <div class="spinner" id="submitSpinner"></div>
+          <svg id="submitArrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+
+        <div class="step-nav" style="margin-top:16px">
+          <button type="button" class="step-nav-back" data-back="4">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            Go Back &amp; Edit
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Success State -->
+    <div class="success-state" id="successState">
+      <div class="success-icon">✅</div>
+      <h2 class="success-title">We Got It!</h2>
+      <p class="success-sub">Your project brief has been submitted. Digital Rush Studios will review it and reach out within <strong>24–48 hours</strong>.</p>
+      <div class="success-details">
+        <div class="success-chip"><span>📧</span> Check your email for confirmation</div>
+        <div class="success-chip"><span>📱</span> Follow <span>@digitalrushstudios</span></div>
+      </div>
+      <a href="index.html" class="btn-gold">
+        Back to $TARBORN EPK
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══════════════════════════════════════════════ -->
+<section class="how-section">
+  <div class="how-inner">
+    <div class="how-header reveal">
+      <div class="how-eyebrow">The Process</div>
+      <h2 class="how-title">How We Work</h2>
+    </div>
+    <div class="how-steps">
+      <div class="how-step reveal reveal-d1">
+        <div class="how-step-num">01</div>
+        <div class="how-step-title">Submit Your Brief</div>
+        <div class="how-step-desc">Fill out the intake form with your project details, vision, and timeline.</div>
+      </div>
+      <div class="how-step reveal reveal-d2">
+        <div class="how-step-num">02</div>
+        <div class="how-step-title">We Connect</div>
+        <div class="how-step-desc">We'll review your brief and reach out within 24–48 hours to align on scope and pricing.</div>
+      </div>
+      <div class="how-step reveal reveal-d1">
+        <div class="how-step-num">03</div>
+        <div class="how-step-title">Creation Phase</div>
+        <div class="how-step-desc">We get to work bringing your vision to life with revisions included at every stage.</div>
+      </div>
+      <div class="how-step reveal reveal-d2">
+        <div class="how-step-num">04</div>
+        <div class="how-step-title">Delivery</div>
+        <div class="how-step-desc">Receive all final files in the formats you need — print-ready, web-ready, and future-proof.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-logo">Digital Rush <span>Studios</span></div>
+  <div class="footer-tagline">Premium Creative Design Services</div>
+  <div class="footer-links">
+    <a href="https://instagram.com/digitalrushstudios" target="_blank" rel="noopener" class="footer-link">Instagram</a>
+    <a href="mailto:digitalrushstudios@gmail.com" class="footer-link">Email Us</a>
+    <a href="index.html" class="footer-link">$TARBORN EPK</a>
+  </div>
+  <div class="footer-copy">© 2025 Digital Rush Studios · All Rights Reserved</div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  /* ── Cursor glow ─────────────────────────────────────── */
+  const glow = document.getElementById('cursorGlow');
+  let mx = 0, my = 0, gx = 0, gy = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function animGlow() {
+    gx += (mx - gx) * 0.07;
+    gy += (my - gy) * 0.07;
+    glow.style.left = gx + 'px';
+    glow.style.top  = gy + 'px';
+    requestAnimationFrame(animGlow);
+  })();
+
+  /* ── Nav scroll ──────────────────────────────────────── */
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 30);
+  }, { passive: true });
+
+  /* ── Reveal on scroll ────────────────────────────────── */
+  const reveals = document.querySelectorAll('.reveal');
+  const rObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); rObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => rObs.observe(el));
+
+  /* ── Stat count-up ───────────────────────────────────── */
+  const statNums = document.querySelectorAll('.hero-stat-num[data-count]');
+  const cObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseInt(el.dataset.count);
+      const suffix = el.dataset.suffix || '';
+      const dur = 1400;
+      const start = performance.now();
+      function step(now) {
+        const p = Math.min((now - start) / dur, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.floor(ease * target) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+        else el.textContent = target + suffix;
+      }
+      requestAnimationFrame(step);
+      cObs.unobserve(el);
+    });
+  }, { threshold: 0.7 });
+  statNums.forEach(el => cObs.observe(el));
+
+  /* ── Multi-step form ─────────────────────────────────── */
+  let currentStep = 1;
+  const TOTAL_STEPS = 5;
+
+  function showStep(n) {
+    document.querySelectorAll('.step-card').forEach(c => c.classList.remove('active'));
+    document.getElementById('step' + n).classList.add('active');
+
+    document.querySelectorAll('.progress-step').forEach((s, i) => {
+      const sn = i + 1;
+      s.classList.remove('active', 'done');
+      if (sn === n) s.classList.add('active');
+      else if (sn < n) s.classList.add('done');
+    });
+
+    currentStep = n;
+    document.getElementById('intakeForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    if (n === 5) populateReview();
+  }
+
+  /* Validate step */
+  function validateStep(n) {
+    let ok = true;
+
+    function err(id, show) {
+      const el = document.getElementById(id);
+      if (el) el.style.display = show ? 'block' : 'none';
+    }
+    function markField(id, hasError) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.classList.toggle('error', hasError);
+      el.classList.toggle('valid', !hasError && el.value.trim() !== '');
+    }
+
+    if (n === 1) {
+      const fn = document.getElementById('firstName').value.trim();
+      const ln = document.getElementById('lastName').value.trim();
+      const em = document.getElementById('email').value.trim();
+      const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em);
+
+      err('firstNameErr', !fn);  markField('firstName', !fn);
+      err('lastNameErr', !ln);   markField('lastName', !ln);
+      err('emailErr', !emailValid); markField('email', !emailValid);
+
+      if (!fn || !ln || !emailValid) ok = false;
+    }
+
+    if (n === 2) {
+      const checked = document.querySelectorAll('#serviceChecks input:checked');
+      err('servicesErr', checked.length === 0);
+      if (checked.length === 0) ok = false;
+    }
+
+    if (n === 3) {
+      const desc = document.getElementById('projectDesc').value.trim();
+      err('projectDescErr', !desc); markField('projectDesc', !desc);
+      if (!desc) ok = false;
+    }
+
+    if (n === 4) {
+      const tl = document.querySelector('input[name="timeline"]:checked');
+      const bud = document.querySelector('input[name="budget"]:checked');
+      err('timelineErr', !tl);
+      err('budgetErr', !bud);
+      if (!tl || !bud) ok = false;
+    }
+
+    return ok;
+  }
+
+  /* Next buttons */
+  document.querySelectorAll('.step-nav-next').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const next = parseInt(btn.dataset.next);
+      if (validateStep(next - 1)) showStep(next);
+    });
+  });
+
+  /* Back buttons */
+  document.querySelectorAll('.step-nav-back').forEach(btn => {
+    btn.addEventListener('click', () => {
+      showStep(parseInt(btn.dataset.back));
+    });
+  });
+
+  /* Progress bar click (only allow going to completed steps) */
+  document.querySelectorAll('.progress-step').forEach(s => {
+    s.addEventListener('click', () => {
+      const n = parseInt(s.dataset.step);
+      if (n < currentStep) showStep(n);
+    });
+  });
+
+  /* Populate review */
+  function populateReview() {
+    const fn = document.getElementById('firstName').value.trim();
+    const ln = document.getElementById('lastName').value.trim();
+    const em = document.getElementById('email').value.trim();
+    const ph = document.getElementById('phone').value.trim();
+    const br = document.getElementById('brandName').value.trim();
+    const checked = [...document.querySelectorAll('#serviceChecks input:checked')].map(i => i.value);
+    const proj = document.getElementById('projectName').value.trim();
+    const desc = document.getElementById('projectDesc').value.trim();
+    const clr  = document.getElementById('colorPrefs').value.trim();
+    const tl   = document.querySelector('input[name="timeline"]:checked');
+    const bud  = document.querySelector('input[name="budget"]:checked');
+
+    function set(id, val) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.textContent = val || '—';
+      el.classList.toggle('empty', !val);
+    }
+
+    set('rv-name',     fn && ln ? fn + ' ' + ln : '');
+    set('rv-email',    em);
+    set('rv-phone',    ph);
+    set('rv-brand',    br);
+    set('rv-services', checked.length ? checked.join(', ') : '');
+    set('rv-project',  proj);
+    set('rv-desc',     desc.length > 120 ? desc.slice(0, 120) + '…' : desc);
+    set('rv-colors',   clr);
+    set('rv-timeline', tl ? tl.value : '');
+    set('rv-budget',   bud ? bud.value : '');
+  }
+
+  /* ── Form submit → Netlify ────────────────────────────── */
+  const form      = document.getElementById('intakeForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const submitTxt = document.getElementById('submitText');
+  const spinner   = document.getElementById('submitSpinner');
+  const arrow     = document.getElementById('submitArrow');
+  const success   = document.getElementById('successState');
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+
+    submitBtn.disabled = true;
+    submitTxt.textContent = 'Sending…';
+    spinner.style.display = 'block';
+    arrow.style.display = 'none';
+
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString()
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('progressWrap').style.display = 'none';
+        success.classList.add('visible');
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        throw new Error('Server error');
+      }
+    } catch {
+      submitBtn.disabled = false;
+      submitTxt.textContent = 'Submit Project Brief';
+      spinner.style.display = 'none';
+      arrow.style.display = 'block';
+      alert('Something went wrong. Please email us directly at digitalrushstudios@gmail.com');
+    }
+  });
+
+  /* ── Real-time validation feedback ──────────────────── */
+  document.querySelectorAll('.field-input').forEach(input => {
+    input.addEventListener('blur', () => {
+      if (input.hasAttribute('required') && !input.value.trim()) {
+        input.classList.add('error');
+        input.classList.remove('valid');
+      } else if (input.value.trim()) {
+        input.classList.remove('error');
+        input.classList.add('valid');
+      }
+    });
+    input.addEventListener('input', () => {
+      if (input.classList.contains('error') && input.value.trim()) {
+        input.classList.remove('error');
+        input.classList.add('valid');
+      }
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
