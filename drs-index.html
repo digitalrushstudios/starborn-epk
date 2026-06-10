@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Rush Studios | Cinematic Creative Direction for Artists &amp; Brands</title>
+  <meta name="description" content="Digital Rush Studios creates cinematic rollout visuals, brand identity systems, campaign assets, and AI-assisted visual production for artists, labels, and culture-driven brands.">
+  <link rel="canonical" href="https://digitalrushstudios.com">
+  <meta property="og:title" content="Digital Rush Studios | Make Your Release Look Major">
+  <meta property="og:description" content="Cinematic campaign visuals, rollout promos, cover art, and brand systems for artists, labels, and culture-driven brands.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalrushstudios.com">
+  <meta property="og:image" content="https://digitalrushstudios.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="robots" content="index, follow">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- ── PRODUCTION CSS SYSTEM ── -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/animations.css">
+  <link rel="stylesheet" href="styles/responsive.css">
+
+  <style>
+    /* ── SCROLL PROGRESS BAR ── */
+    #scrollProgress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--cyan);
+      z-index: 9999;
+      pointer-events: none;
+      transition: width 0.08s linear;
+    }
+
+    /* ── HERO TITLE — line-by-line clip reveal ── */
+    /* Override main.css fadeUp on the whole title; animate each line instead */
+    .hero-title {
+      opacity: 1 !important;
+      animation: none !important;
+      transform: none !important;
+    }
+    .hero-title .line {
+      display: block;
+      overflow: hidden;
+      line-height: 0.93;
+      padding-bottom: 0.07em; /* prevents descender clip */
+    }
+    .hero-title .line-inner {
+      display: block;
+      transform: translateY(110%);
+      animation: lineReveal 1s cubic-bezier(.16, 1, .3, 1) both;
+    }
+    .hero-title .line:nth-child(1) .line-inner { animation-delay: 0.45s; }
+    .hero-title .line:nth-child(2) .line-inner { animation-delay: 0.60s; }
+    .hero-title .line:nth-child(3) .line-inner { animation-delay: 0.75s; }
+    @keyframes lineReveal {
+      to { transform: translateY(0); }
+    }
+
+    /* ── PORTFOLIO CARD CURSOR GLOW ── */
+    /* motion.js sets --mx / --my on each .p-item via mousemove */
+    .p-item::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 1;
+      background: radial-gradient(
+        260px circle at var(--mx, 50%) var(--my, 50%),
+        rgba(1, 221, 254, 0.055) 0%,
+        transparent 70%
+      );
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+    .p-item:hover::before { opacity: 1; }
+
+    /* ── SERVICE CARD SHIMMER ON HOVER ── */
+    .service-card {
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: -60%; left: -60%;
+      width: 50%; height: 200%;
+      background: linear-gradient(
+        105deg,
+        transparent 40%,
+        rgba(1, 221, 254, 0.04) 50%,
+        transparent 60%
+      );
+      transform: skewX(-20deg);
+      transition: left 0.6s ease;
+      pointer-events: none;
+    }
+    .service-card:hover::before { left: 150%; }
+
+    /* ── PROCESS CARD HOVER GLOW ── */
+    .process-card .process-icon {
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .process-card:hover .process-icon {
+      background: rgba(1, 221, 254, 0.12);
+      box-shadow: 0 0 20px rgba(1, 221, 254, 0.2);
+      transform: scale(1.05);
+    }
+
+    /* ── WHY ITEM ANIMATED BORDER ── */
+    .why-item {
+      position: relative;
+    }
+    .why-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      height: 1px; width: 0;
+      background: var(--cyan);
+      opacity: 0.3;
+      transition: width 0.5s ease;
+    }
+    .why-item:hover::after { width: 100%; }
+
+    /* ── TESTIMONIAL SECTION ── */
+    .testimonial-section {
+      position: relative;
+    }
+    .testimonial-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(1, 221, 254, 0.035) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* ── CTA BANNER ANIMATED GRADIENT ── */
+    .cta-banner::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 50% 60% at 50% 100%, rgba(1, 221, 254, 0.05) 0%, transparent 65%),
+        radial-gradient(ellipse 30% 40% at 80% 20%, rgba(1, 221, 254, 0.03) 0%, transparent 60%);
+      animation: ctaGlow 8s ease-in-out infinite alternate;
+      pointer-events: none; z-index: 0;
+    }
+    @keyframes ctaGlow {
+      from { opacity: 0.6; }
+      to   { opacity: 1; }
+    }
+    .cta-banner > * { position: relative; z-index: 1; }
+
+    /* ── STATS — pulsing cyan accent ── */
+    .stat-item:hover .stat-num { color: var(--off-white); }
+    .stat-item:hover .stat-num .stat-accent { color: var(--cyan); }
+
+    /* ── FOOTER ── */
+    footer { position: relative; z-index: 1; }
+
+    /* ── PORTFOLIO ITEM KEYBOARD FOCUS ── */
+    .p-item:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 2px;
+    }
+
+    /* ── SCROLL HINT ── */
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 40px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.8s forwards;
+    }
+
+    /* ── MARQUEE PAUSE ON FOCUS ── */
+    .marquee-section:focus-within .marquee-track { animation-play-state: paused; }
+
+    /* ── MOBILE: hide hero scroll hint on small screens ── */
+    @media (max-width: 640px) {
+      .hero-scroll-hint { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Scroll progress indicator -->
+<div id="scrollProgress" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     NAV
+══════════════════════════════════════════════════════════════════ -->
+<nav id="mainNav">
+  <a href="#hero" class="nav-logo" aria-label="Digital Rush Studios — home">
+    <img
+      src="assets/images/branding/drs-logo-primary.png"
+      alt="Digital Rush Studios"
+      class="nav-logo-img"
+      width="120" height="52"
+    >
+  </a>
+
+  <ul class="nav-links" id="navLinks" role="list">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="pages/creative-lab.html">Free Lab</a></li>
+    <li><a href="#contact" class="nav-cta">Start a Project</a></li>
+  </ul>
+
+  <button
+    class="hamburger"
+    id="hamburger"
+    onclick="toggleMenu()"
+    aria-label="Toggle navigation menu"
+    aria-expanded="false"
+    aria-controls="navLinks"
+  >
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+
+<!-- ══════════════════════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-content">
+
+    <p class="hero-eyebrow">Design studio &mdash; music, artists &amp; brands</p>
+
+    <h1 class="hero-title">
+      <span class="line"><span class="line-inner">We Design</span></span>
+      <span class="line"><span class="line-inner">Visuals That</span></span>
+      <span class="line"><span class="line-inner"><span class="accent">Get You Noticed.</span></span></span>
+    </h1>
+
+    <div class="hero-bottom">
+      <p class="hero-sub">
+        Digital Rush Studios creates cover art, brand identities, campaign graphics,
+        event flyers, and promo videos for artists, labels, and creative businesses.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Start a Project</a>
+        <a href="#work"    class="btn-ghost">See Our Work</a>
+      </div>
+    </div>
+
+    <!-- Artists & brands strip -->
+    <div class="clients-strip reveal">
+      <p class="clients-label">Artists &amp; Brands Served</p>
+      <div class="clients-list" aria-label="Client names">
+        <span>$TARBORN</span>
+        <span>Bodybag Bobby</span>
+        <span>Geda K</span>
+        <span>Ant Live</span>
+        <span>Felice Ferano</span>
+        <span>Linear Drive</span>
+        <span>Settle the Score</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════
+     MARQUEE TICKER
+══════════════════════════════════════════════════════════════════ -->
+<div class="marquee-section" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-item"><span>Brand Identity</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span>Cover Art</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span>Artist Rollouts</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span>AI Commercials</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span>Event Design</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span>Visualizers</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span>Creative Direction</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span>Campaign Assets</span><span class="marquee-dot"></span></div>
+    <!-- Duplicate for seamless infinite loop -->
+    <div class="marquee-item"><span>Brand Identity</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span>Cover Art</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span>Artist Rollouts</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span>AI Commercials</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span>Event Design</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span>Visualizers</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span>Creative Direction</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span>Campaign Assets</span><span class="marquee-dot"></span></div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════════
+     STUDIO REEL
+══════════════════════════════════════════════════════════════════ -->
+<div class="reel-section">
+  <p class="reel-label">Digital Rush Studios &mdash; Studio Reel 2026</p>
+  <div class="reel-inner" id="reelWrap">
+    <video
+      id="reelVideo"
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster="assets/images/portfolio/bodybag-bobby-cover-art.png"
+      aria-label="Digital Rush Studios studio reel"
+    >
+      <source src="videos/logo-reveals/drs-logo-reveal.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════════
+     STATS BAR
+══════════════════════════════════════════════════════════════════ -->
+<div class="stats-bar" role="region" aria-label="Studio statistics">
+  <div class="stat-item reveal">
+    <div class="stat-num" data-target="4" data-suffix="+">4+</div>
+    <div class="stat-label">Years Active</div>
+  </div>
+  <div class="stat-item reveal reveal-d1">
+    <div class="stat-num" data-target="130" data-suffix="+">130+</div>
+    <div class="stat-label">Projects Delivered</div>
+  </div>
+  <div class="stat-item reveal reveal-d2">
+    <div class="stat-num" data-target="65" data-suffix="+">65+</div>
+    <div class="stat-label">Artists Served</div>
+  </div>
+  <div class="stat-item reveal reveal-d3">
+    <div class="stat-num" data-target="7" data-suffix="">7</div>
+    <div class="stat-label">Core Creative Lanes</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════════
+     PORTFOLIO / SELECTED WORK
+══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="work">
+
+  <div class="section-header">
+    <p class="eyebrow reveal">Selected Work</p>
+    <h2 class="section-title reveal">Cover art, branding,<br>and campaign visuals.</h2>
+    <p class="section-desc reveal">
+      A sample of recent projects — album art, brand identities, event designs,
+      and creative direction across music and culture. Click any image to view full size.
+    </p>
+  </div>
+
+  <div class="portfolio-grid">
+
+    <!-- Row 1: Cover art (standard aspect) -->
+    <article class="p-item reveal" tabindex="0" role="button" aria-label="Open Bodybag Bobby project">
+      <img
+        src="assets/images/portfolio/bodybag-bobby-cover-art.png"
+        alt="Bodybag Bobby — campaign artwork by Digital Rush Studios"
+        loading="lazy"
+      >
+      <div class="p-overlay">
+        <span class="p-cat">Album Campaign</span>
+        <h3 class="p-name">Bodybag Bobby</h3>
+        <p class="p-tag">A darker campaign identity built to make the release feel heavy and impossible to ignore.</p>
+        <span class="p-view">View Full Size</span>
+      </div>
+    </article>
+
+    <article class="p-item reveal reveal-d1" tabindex="0" role="button" aria-label="Open Geda K project">
+      <img
+        src="assets/images/portfolio/geda-k-cover-art.png"
+        alt="Geda K — album artwork by Digital Rush Studios"
+        loading="lazy"
+      >
+      <div class="p-overlay">
+        <span class="p-cat">Cover Art</span>
+        <h3 class="p-name">Geda K</h3>
+        <p class="p-tag">Artwork direction built around presence, movement, and artist identity.</p>
+        <span class="p-view">View Full Size</span>
+      </div>
+    </article>
+
+    <article class="p-item reveal reveal-d2" tabindex="0" role="button" aria-label="Open Ant Live — Double Up project">
+      <img
+        src="assets/images/portfolio/Ant_Live_-_Double_Up_Cover_Art_4.png"
+        alt="Ant Live — Double Up cover artwork by Digital Rush Studios"
+        loading="lazy"
+      >
+      <div class="p-overlay">
+        <span class="p-cat">Cover Art</span>
+        <h3 class="p-name">Ant Live</h3>
+        <p class="p-tag">Cover art built to give the single a cinematic, culture-ready presence.</p>
+        <span class="p-view">View Full Size</span>
+      </div>
+    </article>
+
+    <!-- Row 2: Projects -->
+    <article class="p-item reveal" tabindex="0" role="button" aria-label="Open Settle the Score project">
+      <img
+        src="assets/images/portfolio/sushimania-3-event-design.png"
+        alt="Settle the Score — battle rap event design by Digital Rush Studios"
+        loading="lazy"
+      >
+      <div class="p-overlay">
+        <span class="p-cat">Event Branding</span>
+        <h3 class="p-name">Settle the Score</h3>
+        <p class="p-tag">Battle league visuals made to give the card premium fight-night energy.</p>
+        <span class="p-view">View Full Size</span>
+      </div>
+    </article>
+
+    <article class="p-item reveal reveal-d1" tabindex="0" role="button" aria-label="Open Felice Ferano project">
+      <img
+        src="assets/images/portfolio/felice-ferano-brand-identity.png"
+        alt="Felice Ferano — brand identity by Digital Rush Studios"
+        loading="lazy"
+      >
+      <div class="p-overlay">
+        <span class="p-cat">Brand Identity</span>
+        <h3 class="p-name">Felice Ferano</h3>
+        <p class="p-tag">Identity system for an independent artist building a bigger visual presence.</p>
+        <span class="p-view">View Full Size</span>
+      </div>
+    </article>
+
+    <article class="p-item reveal reveal-d2" tabindex="0" role="button" aria-label="Open Linear Drive project">
+      <img
+        src="assets/images/portfolio/linear-drive-brand-identity.png"
+        alt="Linear Drive — brand identity by Digital Rush Studios"
+        loading="lazy"
+      >
+      <div class="p-overlay">
+        <span class="p-cat">Startup Identity</span>
+        <h3 class="p-name">Linear Drive</h3>
+        <p class="p-tag">A modern brand system built around motion, clarity, and momentum.</p>
+        <span class="p-view">View Full Size</span>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- Footer row -->
+  <div class="portfolio-footer reveal">
+    <div class="portfolio-footer-text">
+      <h3>Every project is built different.</h3>
+      <p>We don&rsquo;t use templates. Every visual starts from your brief, your audience, and your goals.</p>
+    </div>
+    <a href="#contact" class="btn-primary">Start a Project</a>
+  </div>
+
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════
+     SERVICES
+══════════════════════════════════════════════════════════════════ -->
+<section class="section section-alt" id="services">
+
+  <div class="section-header">
+    <p class="eyebrow reveal">Services</p>
+    <h2 class="section-title reveal">What we design and build.</h2>
+    <p class="section-desc reveal">
+      We work across three main lanes: release campaigns for artists, brand identity for
+      businesses and creators, and cinematic content for brands that need video.
+      Most projects pull from more than one.
+    </p>
+  </div>
+
+  <div class="services-grid">
+
+    <article class="service-card service-card--primary reveal">
+      <p class="svc-num">01</p>
+      <h3 class="svc-title">Artist Rollout &amp; Release</h3>
+      <p class="svc-desc">
+        For artists and labels dropping a project who need everything to look cohesive —
+        from the cover art to the promo content to every campaign asset.
+      </p>
+      <div class="tags">
+        <span class="tag">Cover Art</span>
+        <span class="tag">Promo Teasers</span>
+        <span class="tag">Release Graphics</span>
+        <span class="tag">Short-Form Assets</span>
+      </div>
+    </article>
+
+    <article class="service-card service-card--primary reveal reveal-d1">
+      <p class="svc-num">02</p>
+      <h3 class="svc-title">Brand Identity &amp; Logo Design</h3>
+      <p class="svc-desc">
+        For artists, businesses, and events that need a logo, visual identity,
+        or full brand system built from the ground up — and built to last.
+      </p>
+      <div class="tags">
+        <span class="tag">Logo Design</span>
+        <span class="tag">Typography</span>
+        <span class="tag">Color System</span>
+        <span class="tag">Brand Guidelines</span>
+      </div>
+    </article>
+
+    <article class="service-card service-card--primary reveal reveal-d2">
+      <p class="svc-num">03</p>
+      <h3 class="svc-title">Promo Videos &amp; Content</h3>
+      <p class="svc-desc">
+        For brands and artists who need short-form promo videos, AI-assisted commercials,
+        or social content that looks polished and performs on every platform.
+      </p>
+      <div class="tags">
+        <span class="tag">AI Commercials</span>
+        <span class="tag">Motion Graphics</span>
+        <span class="tag">Social-First</span>
+      </div>
+    </article>
+
+    <!-- Featured full-width card — Creative Direction -->
+    <article class="service-card service-card--featured reveal">
+      <p class="svc-num">04</p>
+      <h3 class="svc-title">Creative Direction</h3>
+      <p class="svc-desc">
+        Full creative direction for artists, labels, and brands that need a single
+        unified visual vision across every channel, release, and campaign.
+      </p>
+      <div class="tags">
+        <span class="tag">Strategy</span>
+        <span class="tag">Art Direction</span>
+        <span class="tag">Campaign Rollout</span>
+        <span class="tag">Visual Systems</span>
+      </div>
+      <a href="#contact" class="svc-link" data-preset="Creative Direction">Get a Quote</a>
+    </article>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════
+     WHY DRS — asymmetric sticky editorial
+══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="why">
+  <div class="why-layout">
+
+    <div class="why-statement">
+      <p class="eyebrow reveal">Why DRS</p>
+      <h2 class="why-headline reveal">
+        We know music, culture, and what good design actually takes.
+      </h2>
+      <p class="why-sub reveal">
+        We are not a generic design service. We work specifically in music and culture,
+        so we already understand the context your project lives in before you explain it.
+      </p>
+      <a href="#contact" class="why-cta-link reveal">Start working with us &rarr;</a>
+    </div>
+
+    <div class="why-list">
+      <article class="why-item reveal">
+        <span class="why-item-num">01</span>
+        <div>
+          <h3 class="why-item-title">We understand your audience</h3>
+          <p class="why-item-desc">
+            Whether it is an album drop, a brand launch, or an event — we design with the
+            audience in mind, not just what looks good on a blank background.
+          </p>
+        </div>
+      </article>
+      <article class="why-item reveal">
+        <span class="why-item-num">02</span>
+        <div>
+          <h3 class="why-item-title">Music and culture is our lane</h3>
+          <p class="why-item-desc">
+            We have worked with artists, battle leagues, labels, and creative brands
+            since day one. This is not a side project — it is all we do.
+          </p>
+        </div>
+      </article>
+      <article class="why-item reveal">
+        <span class="why-item-num">03</span>
+        <div>
+          <h3 class="why-item-title">Fast turnaround, professional quality</h3>
+          <p class="why-item-desc">
+            Most projects are delivered in days, not weeks. We use current tools and
+            workflows to move quickly without cutting corners on the output.
+          </p>
+        </div>
+      </article>
+      <article class="why-item reveal">
+        <span class="why-item-num">04</span>
+        <div>
+          <h3 class="why-item-title">Everything works together</h3>
+          <p class="why-item-desc">
+            We think about how the cover art, the flyer, the promo graphic, and the
+            social post all fit together — not just the one piece you asked for.
+          </p>
+        </div>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════
+     PROCESS
+══════════════════════════════════════════════════════════════════ -->
+<section class="section section-alt" id="process">
+
+  <div class="section-header">
+    <p class="eyebrow reveal">How It Works</p>
+    <h2 class="section-title reveal">Simple process, clear deliverables.</h2>
+    <p class="section-desc reveal">
+      Four steps from brief to delivery. No guesswork at any stage.
+    </p>
+  </div>
+
+  <div class="process-infographic">
+
+    <article class="process-card reveal" data-step="01">
+      <div class="process-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+      </div>
+      <p class="process-card-step">01</p>
+      <h3 class="process-card-title">Brief</h3>
+      <p class="process-card-desc">
+        Submit your project details — goals, references, deadline, and budget range.
+        The more detail you give, the faster we move.
+      </p>
+    </article>
+
+    <article class="process-card reveal reveal-d1" data-step="02">
+      <div class="process-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+      </div>
+      <p class="process-card-step">02</p>
+      <h3 class="process-card-title">Direction</h3>
+      <p class="process-card-desc">
+        We lock the creative direction before production so the work has a clear lane
+        and no time is wasted guessing what the project needs.
+      </p>
+    </article>
+
+    <article class="process-card reveal reveal-d2" data-step="03">
+      <div class="process-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 20h9"/>
+          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+        </svg>
+      </div>
+      <p class="process-card-step">03</p>
+      <h3 class="process-card-title">Production</h3>
+      <p class="process-card-desc">
+        We design, edit, build, and refine the assets with structured revision rounds
+        until every piece is exactly right.
+      </p>
+    </article>
+
+    <article class="process-card reveal reveal-d3" data-step="04">
+      <div class="process-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+      </div>
+      <p class="process-card-step">04</p>
+      <h3 class="process-card-title">Delivery</h3>
+      <p class="process-card-desc">
+        Organized files, platform-ready exports, and clear next steps.
+        Everything you need to go live immediately.
+      </p>
+    </article>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════
+     TESTIMONIAL
+══════════════════════════════════════════════════════════════════ -->
+<section class="testimonial-section">
+  <div class="testimonial-inner reveal">
+    <span class="testimonial-mark" aria-hidden="true">&ldquo;</span>
+    <blockquote class="testimonial-quote">
+      &ldquo;Digital Rush Studios designed my entire brand rollout and it completely
+      changed how people saw my music. Every piece looked connected, professional,
+      and like it belonged on a major.&rdquo;
+    </blockquote>
+    <div class="testimonial-divider"></div>
+    <div class="testimonial-cite">
+      <span class="cite-name">$TARBORN</span>
+      <span class="cite-role">Queens, NYC &nbsp;&middot;&nbsp; Dot Mobb &nbsp;&middot;&nbsp; $$AB</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════
+     CTA BANNER
+══════════════════════════════════════════════════════════════════ -->
+<section class="cta-banner">
+  <p class="cta-banner-label reveal">Ready to Work</p>
+  <h2 class="cta-banner-title reveal">
+    Make Your<br><span class="accent">Release Look Major.</span>
+  </h2>
+  <p class="cta-banner-sub reveal">
+    Tell us what you are working on and we will put together the right plan.
+    No guesswork, no overpriced retainers, no templates.
+  </p>
+  <a href="#contact" class="btn-primary reveal">Start a Project</a>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════
+     CONTACT / INTAKE FORM
+══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="contact">
+
+  <div class="section-header">
+    <p class="eyebrow reveal">Work With Us</p>
+    <h2 class="section-title reveal">Tell us what you need.<br>We&rsquo;ll take it from there.</h2>
+    <p class="section-desc reveal">
+      Fill out the form with your project details. Pick the service that fits, share any
+      references or links, and we will get back to you within 48 hours with next steps.
+    </p>
+  </div>
+
+  <div class="contact-wrap">
+
+    <!-- Sidebar -->
+    <aside class="contact-aside reveal">
+      <div class="c-item">
+        <h4>Email</h4>
+        <a href="mailto:digitalrushstudios@gmail.com">digitalrushstudios@gmail.com</a>
+      </div>
+      <div class="c-item">
+        <h4>Response Time</h4>
+        <p>Within 48 hours on every project inquiry</p>
+      </div>
+      <div class="c-item">
+        <h4>Instagram</h4>
+        <a href="https://www.instagram.com/digitalrushstudios" target="_blank" rel="noopener noreferrer">@digitalrushstudios</a>
+      </div>
+      <div class="c-item">
+        <h4>Available</h4>
+        <p>Worldwide &nbsp;&middot;&nbsp; Remote-first</p>
+      </div>
+      <div class="next-steps">
+        <p class="next-steps-label">What happens next</p>
+        <p>We review your brief personally, check the scope, and reply with the best next step. If the project is a fit, we move into a discovery call or send a quote directly.</p>
+      </div>
+    </aside>
+
+    <!-- Form -->
+    <div class="reveal">
+      <form
+        class="form"
+        id="intakeForm"
+        name="intake"
+        method="POST"
+        action="/thank-you.html"
+        netlify
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        novalidate
+      >
+        <input type="hidden" name="form-name" value="intake">
+        <p style="display:none"><label>Do not fill this out: <input name="bot-field"></label></p>
+
+        <div class="form-row">
+          <div class="fg">
+            <label for="f-name">Your Name <span aria-hidden="true">*</span></label>
+            <input id="f-name" name="name" type="text" placeholder="First and last name" required autocomplete="name">
+            <span class="field-error-msg">Please enter your name.</span>
+          </div>
+          <div class="fg">
+            <label for="f-email">Email Address <span aria-hidden="true">*</span></label>
+            <input id="f-email" name="email" type="email" placeholder="your@email.com" required autocomplete="email">
+            <span class="field-error-msg">Please enter a valid email address.</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="fg">
+            <label for="f-instagram">Instagram Handle</label>
+            <input id="f-instagram" name="instagram" type="text" placeholder="@yourhandle">
+          </div>
+          <div class="fg">
+            <label for="f-website">Website <span style="opacity:.45; font-weight:400; text-transform:none; letter-spacing:0">(optional)</span></label>
+            <input id="f-website" name="website" type="url" placeholder="https://yoursite.com" autocomplete="url">
+          </div>
+        </div>
+
+        <div class="fg">
+          <label for="f-type">What do you need? <span aria-hidden="true">*</span></label>
+          <select id="f-type" name="project-type" required>
+            <option value="" disabled selected>Select a service</option>
+            <option>Cover Art</option>
+            <option>Brand Identity / Logo Design</option>
+            <option>Artist Rollout / Campaign Package</option>
+            <option>Event Flyer / Promo Design</option>
+            <option>Promo Video / AI Commercial</option>
+            <option>Social Media Graphics</option>
+            <option>Creative Direction</option>
+            <option>Multiple Services / Not Sure Yet</option>
+          </select>
+          <span class="field-error-msg">Please select a service.</span>
+        </div>
+
+        <div class="form-row">
+          <div class="fg">
+            <label for="f-budget">Budget Range</label>
+            <select id="f-budget" name="budget">
+              <option value="" disabled selected>Select a range</option>
+              <option>Under $300</option>
+              <option>$300 &ndash; $600</option>
+              <option>$600 &ndash; $1,200</option>
+              <option>$1,200 &ndash; $2,500</option>
+              <option>$2,500 &ndash; $5,000</option>
+              <option>$5,000+</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="f-deadline">Deadline</label>
+            <input id="f-deadline" name="deadline" type="text" placeholder="ASAP, flexible, or a specific date">
+          </div>
+        </div>
+
+        <div class="fg">
+          <label for="f-details">Project Details <span aria-hidden="true">*</span></label>
+          <textarea
+            id="f-details"
+            name="project-details"
+            placeholder="Describe your project — what you need made, who it's for, any references or inspiration you have in mind, and anything else that helps us understand the work."
+            required
+          ></textarea>
+          <span class="field-error-msg">Please describe your project.</span>
+        </div>
+
+        <div class="form-footer">
+          <span class="form-note">We respond within 48 hours &nbsp;&middot;&nbsp; No spam, ever</span>
+          <button type="submit" class="btn-primary">Send Project Brief</button>
+        </div>
+      </form>
+
+      <!-- Success state (shown via JS after AJAX submit, replaces form) -->
+      <div class="success-msg" id="successMsg" role="alert" aria-live="polite" aria-atomic="true">
+        <p>
+          &#10003;&nbsp; Your brief was received.
+          We&rsquo;ll be in touch within 48 hours — check your inbox.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════════ -->
+<footer>
+  <a href="#hero" class="footer-logo-link" aria-label="Digital Rush Studios — back to top">
+    <img
+      src="assets/images/branding/drs-logo-primary.png"
+      alt="Digital Rush Studios"
+      class="footer-logo-img"
+      width="80" height="30"
+      loading="lazy"
+    >
+  </a>
+  <a href="mailto:digitalrushstudios@gmail.com" class="f-email">digitalrushstudios@gmail.com</a>
+  <nav class="f-links" aria-label="Footer navigation">
+    <a href="#work">Work</a>
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a href="pages/creative-lab.html">Creative Lab</a>
+    <a href="offer.html">Character Drop</a>
+    <a href="#contact">Contact</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+  </nav>
+  <span class="f-copy">&copy; 2026 Digital Rush Studios LLC</span>
+</footer>
+
+
+<!-- ══════════════════════════════════════════════════════════════════
+     LIGHTBOX (interactions.js controls open/close/nav)
+══════════════════════════════════════════════════════════════════ -->
+<div
+  class="lightbox"
+  id="lightbox"
+  aria-hidden="true"
+  aria-modal="true"
+  role="dialog"
+  aria-label="Portfolio image viewer"
+>
+  <div class="lb-stage">
+    <img id="lbImg" src="" alt="">
+
+    <button class="lb-close" id="lbClose" aria-label="Close viewer">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6"  y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+
+    <button class="lb-arrow lb-prev" id="lbPrev" aria-label="Previous image">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+
+    <button class="lb-arrow lb-next" id="lbNext" aria-label="Next image">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+
+    <div class="lb-caption">
+      <span class="lb-cat"  id="lbCat"></span>
+      <span class="lb-name" id="lbName"></span>
+      <span class="lb-count" id="lbCount"></span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════════════════════════════ -->
+<script src="scripts/main.js"></script>
+<script src="scripts/motion.js"></script>
+<script src="scripts/interactions.js"></script>
+
+<script>
+/* ── PAGE-LEVEL ENHANCEMENTS ─────────────────────────────────────── */
+/* These run after the shared scripts load.                           */
+
+/* Scroll progress bar */
+(function () {
+  const bar = document.getElementById('scrollProgress');
+  if (!bar) return;
+  function update() {
+    const scrolled = window.scrollY;
+    const total    = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+/* Video reel — autoplay when in view, pause when out */
+(function () {
+  const video = document.getElementById('reelVideo');
+  if (!video) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) video.play().catch(() => {});
+      else video.pause();
+    });
+  }, { threshold: 0.3 });
+  obs.observe(video);
+})();
+
+/* Hamburger aria-expanded sync */
+(function () {
+  const btn   = document.getElementById('hamburger');
+  const links = document.getElementById('navLinks');
+  if (!btn || !links) return;
+  const orig = window.toggleMenu;
+  window.toggleMenu = function () {
+    if (typeof orig === 'function') orig();
+    btn.setAttribute('aria-expanded', links.classList.contains('open') ? 'true' : 'false');
+  };
+})();
+
+/* Allow Enter/Space to open portfolio items via keyboard */
+document.querySelectorAll('.p-item[tabindex]').forEach(item => {
+  item.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      item.click();
+    }
+  });
+});
+</script>
+
+</body>
+</html>
