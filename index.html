@@ -817,34 +817,62 @@
     background: var(--black);
     text-align: center; padding: 120px 40px;
   }
-  .contact-inner { max-width: 560px; margin: 0 auto; }
+  .contact-inner { max-width: 880px; margin: 0 auto; }
   .contact-inner .section-title { font-size: clamp(2.8rem, 7vw, 5rem); }
-  .contact-inner p {
-    font-size: 1rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 40px;
+  .contact-intro {
+    font-size: 1rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 56px;
+    max-width: 560px; margin-left: auto; margin-right: auto;
   }
-  /* ⬇ BOOKING EMAIL — update this value when you have the address */
-  .contact-email {
-    display: inline-block;
+  /* Two-column contact cards */
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    text-align: left; margin-bottom: 0;
+  }
+  .contact-card {
+    background: var(--grey); border: 1px solid var(--grey-mid);
+    border-radius: 3px; padding: 32px; position: relative; overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .contact-card:hover { border-color: rgba(201,168,76,0.4); }
+  .contact-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+  .contact-card-label {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 6px;
+  }
+  .contact-card-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.6rem; letter-spacing: 0.08em;
-    color: var(--gold);
-    border-bottom: 1px solid var(--gold);
-    padding-bottom: 2px; margin-bottom: 48px;
+    font-size: 1.9rem; letter-spacing: 0.05em; color: var(--white);
+    line-height: 1; margin-bottom: 20px;
+  }
+  .contact-email {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em;
+    color: var(--gold); margin-bottom: 20px;
+    border-bottom: 1px solid rgba(201,168,76,0.35);
+    padding-bottom: 2px;
     transition: opacity 0.2s;
   }
   .contact-email:hover { opacity: 0.7; }
   .socials-row {
-    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 32px;
+    display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px;
   }
   .social-link {
-    display: flex; align-items: center; gap: 8px;
-    background: var(--grey); border: 1px solid var(--grey-mid);
-    color: var(--white); padding: 12px 20px; border-radius: 2px;
-    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 7px;
+    background: rgba(255,255,255,0.04); border: 1px solid var(--grey-mid);
+    color: var(--white); padding: 10px 16px; border-radius: 2px;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
     transition: border-color 0.2s, color 0.2s, transform 0.2s;
   }
   .social-link:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
-  .social-link svg { width: 16px; height: 16px; fill: currentColor; }
+  .social-link svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
+  @media (max-width: 640px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    #contact { padding: 80px 24px; }
+  }
 
   /* ─── FOOTER ─────────────────────────────────────────────────── */
   footer {
@@ -1678,7 +1706,7 @@
           Full creative control across all releases. Available for interviews, features, and press coverage.
         </p>
         <p style="font-size:0.82rem; color:#666; margin-bottom:0">
-          For hi-res press photos and full bio, contact:<br>
+          For hi-res press photos and full bio, contact management:<br>
           <a href="mailto:shawnxaviar@gmail.com" style="color:var(--gold);">shawnxaviar@gmail.com</a>
         </p>
       </div>
@@ -1717,32 +1745,53 @@
       <div class="section-label">Bookings &amp; Press</div>
       <h2 class="section-title">Work With $tarborn</h2>
       <div class="section-divider" style="margin: 0 auto 32px;"></div>
-      <p>
+      <p class="contact-intro">
         For bookings, features, press inquiries, sync licensing, and brand partnerships —
         reach out directly. $tarborn is available for shows, features, interviews, and collaborations worldwide.
       </p>
 
-      <a href="mailto:shawnxaviar@gmail.com" class="contact-email">
-        shawnxaviar@gmail.com
-      </a>
+      <div class="contact-grid">
 
-      <div class="socials-row">
-        <a class="social-link" href="https://instagram.com/shawnxaviar" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-          @shawnxaviar
-        </a>
-        <a class="social-link" href="https://instagram.com/starbeezly__" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-          @starbeezly__
-        </a>
-        <a class="social-link" href="https://x.com/starbeezly__" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          @starbeezly__
-        </a>
-        <a class="social-link" href="https://tiktok.com/@starbeezly__" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.77 1.52V6.76a4.85 4.85 0 01-1-.07z"/></svg>
-          @starbeezly__
-        </a>
+        <!-- $TARBORN -->
+        <div class="contact-card">
+          <div class="contact-card-label">Artist</div>
+          <div class="contact-card-name">$TARBORN</div>
+          <a href="mailto:Starborn.music1@gmail.com" class="contact-email">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+            Starborn.music1@gmail.com
+          </a>
+          <div class="socials-row">
+            <a class="social-link" href="https://instagram.com/starbeezly__" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+              @starbeezly__
+            </a>
+            <a class="social-link" href="https://x.com/starbeezly__" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              @starbeezly__
+            </a>
+            <a class="social-link" href="https://tiktok.com/@starbeezly__" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.77 1.52V6.76a4.85 4.85 0 01-1-.07z"/></svg>
+              @starbeezly__
+            </a>
+          </div>
+        </div>
+
+        <!-- MANAGEMENT -->
+        <div class="contact-card">
+          <div class="contact-card-label">Management</div>
+          <div class="contact-card-name">Shawn Xaviar</div>
+          <a href="mailto:shawnxaviar@gmail.com" class="contact-email">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+            shawnxaviar@gmail.com
+          </a>
+          <div class="socials-row">
+            <a class="social-link" href="https://instagram.com/shawnxaviar" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+              @shawnxaviar
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
