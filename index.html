@@ -335,7 +335,7 @@
   /* Product grid */
   .bb-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 16px;
     margin-top: 48px;
   }
@@ -352,7 +352,7 @@
     box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(201,168,76,0.1);
   }
   .bb-card-img {
-    width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block;
+    width: 100%; object-fit: contain; display: block;
     transition: transform 0.45s var(--ease), filter 0.3s;
     filter: grayscale(15%) contrast(1.05);
   }
@@ -371,11 +371,12 @@
     font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--gold);
   }
-  /* Wide feature card spans 2 cols */
-  .bb-card-wide {
-    grid-column: span 2;
-  }
-  .bb-card-wide .bb-card-img { aspect-ratio: 16/9; }
+  /* Full-width top card */
+  .bb-card-full { grid-column: span 6; }
+  /* 3-across row: each spans 2 of 6 cols */
+  .bb-card-third { grid-column: span 2; }
+  /* 2-across row: each spans 3 of 6 cols */
+  .bb-card-half { grid-column: span 3; }
   .bb-cta-row {
     text-align: center; margin-top: 40px;
   }
@@ -389,13 +390,14 @@
   }
   .bb-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
   @media (max-width: 700px) {
-    .bb-grid { grid-template-columns: 1fr 1fr; }
-    .bb-card-wide { grid-column: span 2; }
-    .bb-card-wide .bb-card-img { aspect-ratio: 4/3; }
+    .bb-grid { grid-template-columns: repeat(2, 1fr); }
+    .bb-card-full { grid-column: span 2; }
+    .bb-card-third { grid-column: span 1; }
+    .bb-card-half { grid-column: span 1; }
   }
   @media (max-width: 480px) {
     .bb-grid { grid-template-columns: 1fr; }
-    .bb-card-wide { grid-column: span 1; }
+    .bb-card-full, .bb-card-third, .bb-card-half { grid-column: span 1; }
   }
 
   /* ─── PRESS SECTION ──────────────────────────────────────────── */
@@ -1616,7 +1618,7 @@
     <div class="bb-header reveal">
       <div class="section-label">Official Merchandise</div>
       <div class="bb-logo-wrap">
-        <img src="assets/bb-logo-white.png" alt="BB — Built Born" class="bb-logo">
+        <img src="assets/bb-logo-white.jpg" alt="BB — Built Born" class="bb-logo">
       </div>
       <div class="bb-divider"></div>
       <p class="bb-story">
@@ -1632,17 +1634,17 @@
 
     <div class="bb-grid">
 
-      <!-- Lifestyle hero shot — wide -->
-      <div class="bb-card bb-card-wide reveal">
-        <img class="bb-card-img" src="assets/shine-pic.jpg" alt="BB Built Born lifestyle" loading="lazy">
+      <!-- Hats — full width top -->
+      <div class="bb-card bb-card-full reveal">
+        <img class="bb-card-img" src="assets/bb-hats.jpg" alt="BB Built Born hats" loading="lazy">
         <div class="bb-card-overlay">
-          <div class="bb-card-label">BB</div>
-          <div class="bb-card-sub">The Collection</div>
+          <div class="bb-card-label">Headwear</div>
+          <div class="bb-card-sub">BB Hats — Available Now</div>
         </div>
       </div>
 
-      <!-- Stool shot -->
-      <div class="bb-card reveal">
+      <!-- Row of 3: stool, press-photo2, belaire -->
+      <div class="bb-card bb-card-third reveal">
         <img class="bb-card-img" src="assets/stool-pic.jpg" alt="BB Built Born apparel" loading="lazy">
         <div class="bb-card-overlay">
           <div class="bb-card-label">The Look</div>
@@ -1650,17 +1652,15 @@
         </div>
       </div>
 
-      <!-- Chair shot -->
-      <div class="bb-card reveal reveal-delay-1">
-        <img class="bb-card-img" src="assets/chair-pic.jpg" alt="BB Built Born statement pieces" loading="lazy">
+      <div class="bb-card bb-card-third reveal reveal-delay-1">
+        <img class="bb-card-img" src="assets/press-photo2.jpg" alt="BB Built Born" loading="lazy">
         <div class="bb-card-overlay">
-          <div class="bb-card-label">Statement Pieces</div>
-          <div class="bb-card-sub">BB Apparel</div>
+          <div class="bb-card-label">BB</div>
+          <div class="bb-card-sub">Built Born</div>
         </div>
       </div>
 
-      <!-- Belaire -->
-      <div class="bb-card reveal reveal-delay-2">
+      <div class="bb-card bb-card-third reveal reveal-delay-2">
         <img class="bb-card-img" src="assets/belaire-pic.jpg" alt="BB Built Born lifestyle" loading="lazy">
         <div class="bb-card-overlay">
           <div class="bb-card-label">Built Born Lifestyle</div>
@@ -1668,12 +1668,20 @@
         </div>
       </div>
 
-      <!-- Hats — wide -->
-      <div class="bb-card bb-card-wide reveal reveal-delay-1">
-        <img class="bb-card-img" src="assets/bb-hats.jpg" alt="BB Built Born hats" loading="lazy">
+      <!-- Row of 2: chair, shine -->
+      <div class="bb-card bb-card-half reveal">
+        <img class="bb-card-img" src="assets/chair-pic.jpg" alt="BB Built Born statement pieces" loading="lazy">
         <div class="bb-card-overlay">
-          <div class="bb-card-label">Headwear</div>
-          <div class="bb-card-sub">BB Hats — Available Now</div>
+          <div class="bb-card-label">Statement Pieces</div>
+          <div class="bb-card-sub">BB Apparel</div>
+        </div>
+      </div>
+
+      <div class="bb-card bb-card-half reveal reveal-delay-1">
+        <img class="bb-card-img" src="assets/shine-pic.jpg" alt="BB Built Born lifestyle" loading="lazy">
+        <div class="bb-card-overlay">
+          <div class="bb-card-label">BB</div>
+          <div class="bb-card-sub">The Collection</div>
         </div>
       </div>
 
